@@ -1,8 +1,11 @@
 site_name: Project Documentation
+site_url: https://mrtc101.github.io/stream-inference-engine
 
 theme:
   name: material
   language: en
+
+use_directory_urls: true
 
 plugins:
   - search
