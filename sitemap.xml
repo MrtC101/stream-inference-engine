@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
-        <loc>None./</loc>
+        <loc>https://mrtc101.github.io/stream-inference-engine/</loc>
         <lastmod>2026-01-23</lastmod>
         <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="None"/>
-        <xhtml:link rel="alternate" hreflang="es" href="Nonees/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/"/>
     </url>
     <url>
-        <loc>Nonees/</loc>
+        <loc>https://mrtc101.github.io/stream-inference-engine/es/</loc>
         <lastmod>2026-01-23</lastmod>
         <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="Nonees/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="None"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/"/>
     </url>
 </urlset>
