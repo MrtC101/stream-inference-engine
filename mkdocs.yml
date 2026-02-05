@@ -17,4 +17,3 @@ plugins:
           build: true
         - locale: es
           name: Español
-      relative_urls: true
