@@ -1,41 +1,43 @@
 # Stream Inference Engine
 
-Contenido mínimo, directo:
+## Problem to solve
 
-Esto es lo primero que leen. Debe poder escanearse en 20–30 segundos.
+This project implements a real-time video inference system designed to process multiple concurrent RTSP streams under strict input, output, performance and resource constraints. 
 
-Contenido:
+## Constraints
 
-One-liner
 
-Real-time multi-stream inference engine for computer vision workloads on GPU.
+### System Input 
+- All Input streams are from different remote sources.
+- All sources are assumed to stream using RTSP protocol over http/s and are h265 encoded.
+- Remote connection is unstable and can be lost at any time.
 
-Problem statement
+### System Output
+- streams have to be served using RTSP over http and coded in H264 or H256 codec.  
+- Inference results are shown as layouts that are drawn over the frame
+- No metadata can be generated to be transmitted with the stream.
+- Inference should trigger events based on the inference rules declared in a DSL YAML configuration file. 
+These events should be consumed externally in the future.
+- 
 
-CPU-based pipelines couldn’t meet real-time constraints.
+### System Output
+- Output should be coded in a H264 format stream served by an RTSP server 
+- Achieve real-time output keeping frame drop rate metric under 5% 
+- Inference result overlays must be plotted on top of the input video
+- No ovelayes medata is generated or transfered as output
 
-Target: multi-RTSP, low latency, production 24/7.
+### Inference Contraints
+- System must be able to process a DSL inference configuration YAML file.
+- System must be able to hot-reload inference configurations while changed.
+- System must provide a templates and configurations processing capability to ensure reusability. 
+- Capability to start and stop inference processing over each different processed stream.
 
-High-level architecture
+### Resources constraints
+- Reduce CPU usage
+- Do stream decode and encode using hardware
+- Do inference using GPU computation  
 
-5–6 bullets máximo.
-
-Sin código.
-
-Sin nombres internos sensibles.
-
-Key results
-
-6 RTSP streams @ 720p / 25 FPS
-
-<1% frame drop under load
-
-GPU-accelerated inference pipeline
-
-What this page is / is not
-
-Is: system design & engineering decisions
-
-Is not: full implementation details or proprietary code
-
-Esto ya filtra bien a quien entiende y a quien no.
+## Responsibility boundaries
+- System must reconnect autocamitaclly if input stream is lost.
+- System must be able to handle multiple concurrent streams.
+- System must provide an API to load configuration files, model weights, and run inference streams over input streams.

@@ -1,5 +1,15 @@
 # Overview ***draft***
 
+# Stream Inference Engine
+
+This project implements a real-time video inference system designed to process multiple concurrent RTSP streams under strict latency and resource constraints.
+
+The system targets continuous operation (24/7) on a single GPU host, prioritizing predictable degradation over maximum throughput. The primary design goal is not peak performance, but controlled behavior under load: bounded latency, explicit backpressure, and failure isolation between streams.
+
+This documentation describes the system from an engineering perspective, focusing on architectural boundaries, performance characteristics, and design trade-offs rather than implementation details.
+
+
+
 This project presents a technical overview of a [MindColab](http://mindcolab.com)'s new *real-time video processing* ***engine*** designed to use interchangeable *AI* models to perform inference over multiple continuous video streams. The system, hereafter referred to as *inference engine*, acts as a core piece for a microservice architecture used to deliver a commercial service called "ironstream". To make the *engine* a reliable solution, the implementation and internal design need to meet key requirements such as *24/7 availability*, *efficient use of computational resources*, *state-of-the-art frameworks* and *extensibility and customization of inference features*.
 
 The primary goal is not to showcase a finished product, but to **document engineering decisions**, trade-offs, and real-world limitations encountered while building a functional *MVP* under practical constraints such as time, hardware, and system complexity.
