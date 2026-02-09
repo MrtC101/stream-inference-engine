@@ -1,13 +1,90 @@
-Esto no te debilita, te fortalece.
+# Limitations
 
-Contenido:
+Esta sección describe las limitaciones actuales del sistema en el estado de MVP.  
+Las limitaciones aquí expuestas reflejan restricciones técnicas observadas, decisiones de implementación y alcances deliberadamente postergados, y no deben interpretarse como límites fundamentales del diseño.
 
-No full end-to-end zero-copy
+---
 
-No horizontal scaling
+## Stream Concurrency Limit (MVP)
 
-Limited hot-reload (no source swap)
+- El MVP soporta actualmente hasta **6 streams concurrentes** con rendimiento aceptable.
+- Este límite surge de **consumo agregado de recursos** (RAM, VRAM, encoder/decoder por hardware y cómputo GPU), no de una restricción lógica del sistema.
+- El límite **no está impuesto por configuración ni hardcoded**; es el punto a partir del cual el frame drop rate supera los umbrales aceptables de real-time.
+- Con optimización técnica adicional, se estima que el sistema podría escalar hasta **~10 streams** sobre el mismo hardware, dependiendo de:
+  - resolución,
+  - FPS de entrada,
+  - complejidad del modelo,
+  - tipo de tarea de inferencia.
+- Aun con optimización, el hardware impone un **techo práctico** que limita la escalabilidad sin aumento de recursos.
 
-No advanced fault isolation yet
+---
 
-Corto, honesto, técnico.
+## Zero-Copy Limitations
+
+- No se ha logrado un esquema de **zero-copy completo** a lo largo de todo el pipeline.
+- En plataformas Jetson, aunque RAM y VRAM comparten el mismo chip, el zero-copy total no es viable dentro de los límites actuales de:
+  - Python,
+  - CUDA,
+  - PyTorch,
+  - DeepStream,
+  - GStreamer.
+- Durante la fase de dibujado:
+  - ciertas operaciones (por ejemplo, segmentación) resultan más simples de implementar en CPU usando OpenCV,
+  - lo que introduce copias explícitas o implícitas de memoria.
+- Algunos modelos requieren entrada en formato `float32`, lo que implica conversiones y copias adicionales.
+- En la práctica, los frameworks de inferencia realizan copias internas, por lo que este comportamiento es esperado.
+- Conclusión: se aplica un enfoque **best-effort zero-copy**, manteniendo los frames en GPU el mayor tiempo posible, pero aceptando copias cuando son necesarias.
+
+---
+
+## Metrics and Observability Limitations
+
+- La arquitectura basada en **dos pipelines desacoplados mediante memoria compartida** provoca la **pérdida de identidad de frame** entre pipelines.
+- Esto impide medir de forma precisa:
+  - latencia end-to-end real,
+  - throughput efectivo,
+  - correlación frame-a-frame entre entrada y salida.
+- Actualmente:
+  - el **frame drop rate** se utiliza como métrica principal para evaluar comportamiento real-time,
+  - otras métricas son aproximadas.
+- Implementar trazabilidad completa requeriría:
+  - extender el esquema de memoria compartida con headers de metadata,
+  - o introducir mecanismos explícitos de sincronización entre procesos.
+- Dado el alcance del MVP, esta mejora se considera **deuda técnica**.
+
+---
+
+## MVP Scope Limitations
+
+- El sistema se desarrolló como MVP orientado a **validación técnica y de negocio**, no como producto final.
+- No se implementaron:
+  - mecanismos de control de carga basados en recursos,
+  - límites dinámicos de ejecución de runs,
+  - escalado automático.
+- El número de frameworks de inferencia soportados es limitado:
+  - YOLO como framework principal,
+  - soporte puntual para Anomalib.
+- La calidad de inferencia depende exclusivamente del modelo cargado; el sistema no aplica validación semántica de resultados.
+- El sistema no garantiza:
+  - accesibilidad de las fuentes,
+  - estabilidad de la red,
+  - calidad de imagen de entrada,
+  - comportamiento de los consumidores de los streams.
+
+---
+
+## Resolved Technical Debt
+
+- Se eliminó la **cache en CPU del módulo de dibujado**, reduciendo el consumo excesivo de RAM observado en versiones anteriores.
+
+---
+
+## Deferred Improvements
+
+Las siguientes limitaciones se consideran abordables en fases futuras de desarrollo:
+
+- Optimización adicional del consumo de memoria RAM y VRAM.
+- Mejora del lifecycle de runs y mayor resiliencia ante fallos.
+- Implementación de control de carga basado en métricas de recursos.
+- Mejora de métricas y trazabilidad de frames.
+- Ampliación del soporte de frameworks y tipos de modelos.
