@@ -29,7 +29,7 @@
     
     
       
-        <title>5 limitations - Project Documentation</title>
+        <title>Limitations - Project Documentation</title>
       
     
     
@@ -69,6 +69,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#limitations" class="md-skip">
+          Saltar a contenido
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -101,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5 limitations
+              Limitations
             
           </span>
         </div>
@@ -230,7 +235,7 @@
   <span class="md-ellipsis">
     
   
-    Motor de inferencia de Streams
+    Stream Inference Engine
   
 
     
@@ -257,7 +262,7 @@
   <span class="md-ellipsis">
     
   
-    1 overview
+    Overview
   
 
     
@@ -284,7 +289,7 @@
   <span class="md-ellipsis">
     
   
-    2 architecture
+    Architecture
   
 
     
@@ -311,7 +316,7 @@
   <span class="md-ellipsis">
     
   
-    3 performance
+    Performance
   
 
     
@@ -338,7 +343,7 @@
   <span class="md-ellipsis">
     
   
-    4 engineering decisions
+    Engineering Decisions
   
 
     
@@ -364,6 +369,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitations
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -372,7 +397,7 @@
   <span class="md-ellipsis">
     
   
-    5 limitations
+    Limitations
   
 
     
@@ -381,6 +406,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stream-concurrency-limit-mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stream Concurrency Limit (MVP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zero-copy-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zero-Copy Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics-and-observability-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics and Observability Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mvp-scope-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MVP Scope Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolved-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolved Technical Debt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deferred-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred Improvements
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -400,7 +510,7 @@
   <span class="md-ellipsis">
     
   
-    6 production
+    Producción (MVP)
   
 
     
@@ -430,6 +540,82 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stream-concurrency-limit-mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stream Concurrency Limit (MVP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zero-copy-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zero-Copy Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics-and-observability-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics and Observability Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mvp-scope-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MVP Scope Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolved-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolved Technical Debt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deferred-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred Improvements
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -446,15 +632,87 @@
 
 
 
-  <h1>5 limitations</h1>
-
-<p>Esto no te debilita, te fortalece.</p>
-<p>Contenido:</p>
-<p>No full end-to-end zero-copy</p>
-<p>No horizontal scaling</p>
-<p>Limited hot-reload (no source swap)</p>
-<p>No advanced fault isolation yet</p>
-<p>Corto, honesto, técnico.</p>
+<h1 id="limitations">Limitations</h1>
+<p>Esta sección explicita las restricciones técnicas observadas en el estado actual del MVP, diferenciando límites derivados de implementación, entorno y prioridades de alcance respecto de limitaciones estructurales del diseño. Define los bordes operativos actuales del sistema en términos de concurrencia, zero-copy, métricas, escalabilidad y observabilidad, estableciendo qué comportamientos son inherentes al estado presente y cuáles constituyen deuda técnica planificada para evolución futura.</p>
+<hr />
+<h2 id="stream-concurrency-limit-mvp">Stream Concurrency Limit (MVP)</h2>
+<ul>
+<li>El MVP soporta actualmente hasta <strong>6 streams concurrentes</strong> con rendimiento aceptable.</li>
+<li>Este límite surge de <strong>consumo agregado de recursos</strong> (RAM, VRAM, encoder/decoder por hardware y cómputo GPU), no de una restricción lógica del sistema.</li>
+<li>El límite <strong>no está impuesto por configuración ni hardcoded</strong>; es el punto a partir del cual el frame drop rate supera los umbrales aceptables de real-time.</li>
+<li>Con optimización técnica adicional, se estima que el sistema podría escalar hasta <strong>~10 streams</strong> sobre el mismo hardware, dependiendo de:</li>
+<li>resolución,</li>
+<li>FPS de entrada,</li>
+<li>complejidad del modelo,</li>
+<li>tipo de tarea de inferencia.</li>
+<li>Aun con optimización, el hardware impone un <strong>techo práctico</strong> que limita la escalabilidad sin aumento de recursos.</li>
+</ul>
+<hr />
+<h2 id="zero-copy-limitations">Zero-Copy Limitations</h2>
+<ul>
+<li>No se ha logrado un esquema de <strong>zero-copy completo</strong> a lo largo de todo el pipeline.</li>
+<li>En plataformas Jetson, aunque RAM y VRAM comparten el mismo chip, el zero-copy total no es viable dentro de los límites actuales de:</li>
+<li>Python,</li>
+<li>CUDA,</li>
+<li>PyTorch,</li>
+<li>DeepStream,</li>
+<li>GStreamer.</li>
+<li>Durante la fase de dibujado:</li>
+<li>ciertas operaciones (por ejemplo, segmentación) resultan más simples de implementar en CPU usando OpenCV,</li>
+<li>lo que introduce copias explícitas o implícitas de memoria.</li>
+<li>Algunos modelos requieren entrada en formato <code>float32</code>, lo que implica conversiones y copias adicionales.</li>
+<li>En la práctica, los frameworks de inferencia realizan copias internas, por lo que este comportamiento es esperado.</li>
+<li>Conclusión: se aplica un enfoque <strong>best-effort zero-copy</strong>, manteniendo los frames en GPU el mayor tiempo posible, pero aceptando copias cuando son necesarias.</li>
+</ul>
+<hr />
+<h2 id="metrics-and-observability-limitations">Metrics and Observability Limitations</h2>
+<ul>
+<li>La arquitectura basada en <strong>dos pipelines desacoplados mediante memoria compartida</strong> provoca la <strong>pérdida de identidad de frame</strong> entre pipelines.</li>
+<li>Esto impide medir de forma precisa:</li>
+<li>latencia end-to-end real,</li>
+<li>throughput efectivo,</li>
+<li>correlación frame-a-frame entre entrada y salida.</li>
+<li>Actualmente:</li>
+<li>el <strong>frame drop rate</strong> se utiliza como métrica principal para evaluar comportamiento real-time,</li>
+<li>otras métricas son aproximadas.</li>
+<li>Implementar trazabilidad completa requeriría:</li>
+<li>extender el esquema de memoria compartida con headers de metadata,</li>
+<li>o introducir mecanismos explícitos de sincronización entre procesos.</li>
+<li>Dado el alcance del MVP, esta mejora se considera <strong>deuda técnica</strong>.</li>
+</ul>
+<hr />
+<h2 id="mvp-scope-limitations">MVP Scope Limitations</h2>
+<ul>
+<li>El sistema se desarrolló como MVP orientado a <strong>validación técnica y de negocio</strong>, no como producto final.</li>
+<li>No se implementaron:</li>
+<li>mecanismos de control de carga basados en recursos,</li>
+<li>límites dinámicos de ejecución de runs,</li>
+<li>escalado automático.</li>
+<li>El número de frameworks de inferencia soportados es limitado:</li>
+<li>YOLO como framework principal,</li>
+<li>soporte puntual para Anomalib.</li>
+<li>La calidad de inferencia depende exclusivamente del modelo cargado; el sistema no aplica validación semántica de resultados.</li>
+<li>El sistema no garantiza:</li>
+<li>accesibilidad de las fuentes,</li>
+<li>estabilidad de la red,</li>
+<li>calidad de imagen de entrada,</li>
+<li>comportamiento de los consumidores de los streams.</li>
+</ul>
+<hr />
+<h2 id="resolved-technical-debt">Resolved Technical Debt</h2>
+<ul>
+<li>Se eliminó la <strong>cache de frames completos en CPU del módulo de dibujado</strong>, reduciendo el consumo excesivo de RAM observado en versiones anteriores. El módulo mantiene cache de resultados de inferencia y metadata de dibujado entre frames, pero ya no almacena copias de frames en memoria CPU.</li>
+</ul>
+<hr />
+<h2 id="deferred-improvements">Deferred Improvements</h2>
+<p>Las siguientes limitaciones se consideran abordables en fases futuras de desarrollo:</p>
+<ul>
+<li>Optimización adicional del consumo de memoria RAM y VRAM.</li>
+<li>Mejora del lifecycle de runs y mayor resiliencia ante fallos.</li>
+<li>Implementación de control de carga basado en métricas de recursos.</li>
+<li>Mejora de métricas y trazabilidad de frames.</li>
+<li>Ampliación del soporte de frameworks y tipos de modelos.</li>
+</ul>
 
 
 

@@ -29,7 +29,7 @@
     
     
       
-        <title>2 architecture - Project Documentation</title>
+        <title>Architecture - Project Documentation</title>
       
     
     
@@ -69,6 +69,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#architecture" class="md-skip">
+          Saltar a contenido
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -101,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2 architecture
+              Architecture
             
           </span>
         </div>
@@ -230,7 +235,7 @@
   <span class="md-ellipsis">
     
   
-    Motor de inferencia de Streams
+    Stream Inference Engine
   
 
     
@@ -257,7 +262,7 @@
   <span class="md-ellipsis">
     
   
-    1 overview
+    Overview
   
 
     
@@ -283,6 +288,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -291,7 +316,7 @@
   <span class="md-ellipsis">
     
   
-    2 architecture
+    Architecture
   
 
     
@@ -300,6 +325,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modulos-conceptuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Módulos conceptuales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flujo-de-control-y-comunicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujo de control y comunicación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencias-externas-y-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencias externas y hardware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escalabilidad-y-limites-conceptuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalabilidad y límites conceptuales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metricas-conceptuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métricas conceptuales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extensibilidad-y-ownershipa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extensibilidad y ownershipa
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -319,7 +429,7 @@
   <span class="md-ellipsis">
     
   
-    3 performance
+    Performance
   
 
     
@@ -346,7 +456,7 @@
   <span class="md-ellipsis">
     
   
-    4 engineering decisions
+    Engineering Decisions
   
 
     
@@ -373,7 +483,7 @@
   <span class="md-ellipsis">
     
   
-    5 limitations
+    Limitations
   
 
     
@@ -400,7 +510,7 @@
   <span class="md-ellipsis">
     
   
-    6 production
+    Producción (MVP)
   
 
     
@@ -430,6 +540,82 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modulos-conceptuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Módulos conceptuales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flujo-de-control-y-comunicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujo de control y comunicación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencias-externas-y-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencias externas y hardware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escalabilidad-y-limites-conceptuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalabilidad y límites conceptuales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metricas-conceptuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métricas conceptuales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extensibilidad-y-ownershipa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extensibilidad y ownershipa
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -446,29 +632,62 @@
 
 
 
-  <h1>2 architecture</h1>
-
-<ol>
-<li>architecture.md — Architecture &amp; Data Flow (muy importante)</li>
-</ol>
-<p>Acá demostrás ingeniería, no marketing.</p>
-<p>Secciones internas:</p>
-<p>Pipeline decomposition</p>
-<p>Ingestion</p>
-<p>Pre-processing</p>
-<p>Inference</p>
-<p>Post-processing</p>
-<p>Output</p>
-<p>Process model</p>
-<p>Multiprocess architecture</p>
-<p>IPC via shared memory (NVMM)</p>
-<p>Why processes, not threads</p>
-<p>Backpressure handling</p>
-<p>Queues in GStreamer</p>
-<p>Trade-offs (no explicit drop policy yet)</p>
-<p>Nada de detalles implementativos finos.
-Nada de nombres de clases.
-Solo decisiones.</p>
+<h1 id="architecture">Architecture</h1>
+<p>Esta sección describe la descomposición estructural del sistema en módulos conceptuales, el flujo de datos y control entre ellos, y los mecanismos de comunicación utilizados. Define las dependencias externas críticas (hardware, drivers y frameworks), los límites actuales de escalabilidad bajo el hardware objetivo y las métricas consideradas para evaluar comportamiento. También delimita el grado de extensibilidad de los componentes y el modelo de ownership dentro del alcance del MVP.</p>
+<h2 id="modulos-conceptuales">Módulos conceptuales</h2>
+<ul>
+<li>API: Comunicación con desarrolladores y otros servicios, validación básica de configuraciones y pesos, administración de base de datos.</li>
+<li>Engine: Orquestador de submódulos, interactúa con la base de datos mediante polling.</li>
+<li>Configuration Validation: Interpreta argumentos del YAML, enlaza templates, contiene el compilador DSL de reglas de inferencia, genera clases que ejecutan reglas por frame.</li>
+<li>Metrics: Monitorea recursos del sistema y reporta resultados a la base de datos.</li>
+<li>Processing: Orquesta detección de movimiento, inferencia de modelos, dibujado de frames y ejecución de reglas.</li>
+<li>Evaluador de reglas: Ejecuta reglas a partir de los resultados de inferencia (orquestado por Processing).</li>
+<li>Módulo de dibujado: Dibuja y genera metadatos sobre frames según resultados de inferencia y evaluación de reglas (orquestado por Processing).</li>
+<li>Módulo de modelos: Gestiona carga de pesos y arquitecturas de modelos, valida configuraciones y clases a detectar o segmentar.</li>
+<li>Stream y File Manager: Ejecuta procesos de inferencia sobre streams o archivos, crea pipelines de GPU/CPU, levanta el servidor RTSP, sirve al Engine.</li>
+<li>Transforms: Puente entre Processing y Stream/File Manager, permite el paso de frames entre pipelines.</li>
+<li>Flujo de datos conceptual: Los frames y resultados de inferencia fluyen del Stream/File Manager → Transform → Processing (incluyendo dibujado y reglas) → Transform → Stream/File Manager → Server RTSP. La API y la base de datos actúan como mediadores de control y configuración.</li>
+</ul>
+<p><strong>[Aquí iría el diagrama conceptual del flujo de datos y control entre los módulos]</strong></p>
+<hr />
+<h2 id="flujo-de-control-y-comunicacion">Flujo de control y comunicación</h2>
+<ul>
+<li>Los módulos se comunican mediante llamadas a métodos conceptuales entre ellos.</li>
+<li>Stream Manager utiliza IPC (stdin/stdout) y memoria compartida (shmsink/shmsrc) para coordinar pipelines que corren en procesos separados. Los Transforms procesan frames directamente dentro del mismo proceso mediante llamadas al FrameProcessor.</li>
+<li>API y Engine se comunican exclusivamente a través de la base de datos.</li>
+<li>Todos los módulos deben funcionar correctamente para ejecutar un run; si alguno falla, el run no se completa.</li>
+</ul>
+<hr />
+<h2 id="dependencias-externas-y-hardware">Dependencias externas y hardware</h2>
+<ul>
+<li>Dependencia fuerte de arquitectura GPU: Tesla V100, NVIDIA T4, Jetson.</li>
+<li>Librerías y frameworks requeridos: CUDA 12.6, cuDNN, DeepStream 7.1, pyds, GStreamer plugins, drivers NVIDIA específicos, YOLO, PyTorch, TensorRT.</li>
+<li>API y Engine dependen de la base de datos (actualmente local).</li>
+<li>Módulos dependen del hardware disponible para cumplir con rendimiento esperado.</li>
+</ul>
+<hr />
+<h2 id="escalabilidad-y-limites-conceptuales">Escalabilidad y límites conceptuales</h2>
+<ul>
+<li>Límite actual: 6 streams 1080p con inferencia full-frame usando modelo YOLO nano.</li>
+<li>Potencial estimado: ~10 streams con optimización de recursos y sin escalar hardware.</li>
+<li>Consumo actual para 6 streams: 16GB RAM, &lt;12GB VRAM, GPU Tesla V100, CPU 6 núcleos.</li>
+<li>Escalar mediante más hardware es más rápido pero costoso; optimización de código puede mejorar eficiencia sin aumentar recursos.</li>
+</ul>
+<hr />
+<h2 id="metricas-conceptuales">Métricas conceptuales</h2>
+<ul>
+<li>Se mide framedrop rate, latencia end-to-end y latencia de procesamiento.</li>
+<li>Pipeline 2 mide solo latencia end-to-end, framedrop no es representativo.</li>
+<li>La medición real es limitada debido a la pérdida de identidad de frames entre pipelines.</li>
+<li>Futuras mejoras: agregar metadata por frame para trazabilidad entre pipelines y medición precisa de throughput y latencia.</li>
+</ul>
+<hr />
+<h2 id="extensibilidad-y-ownershipa">Extensibilidad y ownershipa</h2>
+<ul>
+<li>Módulos como validación de reglas, evaluación de reglas, carga de modelos y dibujado son extensibles, aunque requieren intervención de un desarrollador.</li>
+<li>Engine orquesta todos los módulos; API desacopla casi totalmente la interacción mediante la base de datos.</li>
+<li>Diseño conceptual permite escalar y modificar funcionalidades sin afectar otros módulos, respetando límites del MVP.</li>
+</ul>
 
 
 

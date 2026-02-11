@@ -27,7 +27,7 @@
     
     
       
-        <title>6 production - Project Documentation</title>
+        <title>Producción (MVP) - Project Documentation</title>
       
     
     
@@ -67,6 +67,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#produccion-mvp" class="md-skip">
+          Saltar a contenido
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -99,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              6 production
+              Producción (MVP)
             
           </span>
         </div>
@@ -228,7 +233,7 @@
   <span class="md-ellipsis">
     
   
-    Motor de inferencia de Streams
+    Stream Inference Engine
   
 
     
@@ -255,7 +260,7 @@
   <span class="md-ellipsis">
     
   
-    1 overview
+    Overview
   
 
     
@@ -282,7 +287,7 @@
   <span class="md-ellipsis">
     
   
-    2 architecture
+    Architecture
   
 
     
@@ -309,7 +314,7 @@
   <span class="md-ellipsis">
     
   
-    3 performance
+    Performance
   
 
     
@@ -336,7 +341,7 @@
   <span class="md-ellipsis">
     
   
-    4 engineering decisions
+    Engineering Decisions
   
 
     
@@ -363,7 +368,7 @@
   <span class="md-ellipsis">
     
   
-    5 limitations
+    Limitations
   
 
     
@@ -389,6 +394,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Producción (MVP)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -397,7 +422,7 @@
   <span class="md-ellipsis">
     
   
-    6 production
+    Producción (MVP)
   
 
     
@@ -406,6 +431,219 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-scope-de-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Scope de Producción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura-de-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Arquitectura de Ejecución
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Arquitectura de Ejecución">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ciclo-de-vida-del-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Ciclo de vida del Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-estrategia-de-reintentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Estrategia de Reintentos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-despliegue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Despliegue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Despliegue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-targets-soportados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Targets Soportados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-proceso-de-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Proceso de Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-distribucion-y-activacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Distribución y Activación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-gestion-de-recursos-y-fallos-conocidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Gestión de Recursos y Fallos Conocidos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Gestión de Recursos y Fallos Conocidos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-saturacion-de-recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Saturación de Recursos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-disponibilidad-de-fuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Disponibilidad de Fuentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-criterios-de-fallo-del-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Criterios de Fallo del Proceso
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-pipeline-de-memoria-y-zero-copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Pipeline de Memoria y Zero-Copy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-metricas-y-observabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Métricas y Observabilidad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-configuracion-y-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Configuración y Seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-limitaciones-del-mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Limitaciones del MVP
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -428,6 +666,210 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-scope-de-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Scope de Producción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura-de-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Arquitectura de Ejecución
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Arquitectura de Ejecución">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ciclo-de-vida-del-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Ciclo de vida del Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-estrategia-de-reintentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Estrategia de Reintentos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-despliegue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Despliegue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Despliegue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-targets-soportados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Targets Soportados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-proceso-de-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Proceso de Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-distribucion-y-activacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Distribución y Activación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-gestion-de-recursos-y-fallos-conocidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Gestión de Recursos y Fallos Conocidos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Gestión de Recursos y Fallos Conocidos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-saturacion-de-recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Saturación de Recursos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-disponibilidad-de-fuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Disponibilidad de Fuentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-criterios-de-fallo-del-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Criterios de Fallo del Proceso
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-pipeline-de-memoria-y-zero-copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Pipeline de Memoria y Zero-Copy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-metricas-y-observabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Métricas y Observabilidad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-configuracion-y-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Configuración y Seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-limitaciones-del-mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Limitaciones del MVP
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -444,14 +886,129 @@
 
 
 
-  <h1>6 production</h1>
-
-<p>Solo si es real.</p>
-<p>24/7 operation assumptions</p>
-<p>Restart strategy</p>
-<p>Graceful shutdown</p>
-<p>Configuration hot-reload via DSL</p>
-<p>Nada de promesas futuras.</p>
+<h1 id="produccion-mvp">Producción (MVP)</h1>
+<p>Esta sección delimita el comportamiento operativo del sistema en su estado actual bajo un entorno productivo controlado de tipo single-node. Define supuestos de ejecución, restricciones de despliegue, límites de resiliencia y ausencia de automatización avanzada, dejando explícito qué garantías mínimas existen y qué aspectos permanecen como deuda técnica. No constituye un diseño definitivo de producción ni establece compromisos formales de disponibilidad o SLA.</p>
+<hr />
+<h2 id="1-scope-de-produccion">1. Scope de Producción</h2>
+<ul>
+<li>Arquitectura <strong>single-node</strong>.</li>
+<li>Se asume <strong>1 GPU por host</strong>.</li>
+<li>No se contempla <strong>alta disponibilidad (HA)</strong> ni despliegue <strong>multi-node</strong>.</li>
+<li>La escalabilidad horizontal queda fuera de scope del MVP.</li>
+<li>El límite práctico de streams está condicionado tanto por consumo de recursos como por restricciones arquitectónicas del pipeline.</li>
+</ul>
+<hr />
+<h2 id="2-arquitectura-de-ejecucion">2. Arquitectura de Ejecución</h2>
+<h3 id="21-ciclo-de-vida-del-engine">2.1 Ciclo de vida del Engine</h3>
+<ul>
+<li>El engine se ejecuta de forma <strong>persistente</strong> y no finaliza por inactividad.</li>
+<li>Permanece en espera indefinida de solicitudes de <code>run</code>.</li>
+<li>Si <strong>ninguna fuente conecta durante la inicialización</strong>, el sistema no se considera desplegado funcionalmente y queda en estado de espera.</li>
+<li>Se asume que, en ese escenario, los <code>run</code> serán solicitados nuevamente de forma externa.</li>
+<li>Este comportamiento es <strong>susceptible de cambio</strong> en futuras iteraciones.</li>
+</ul>
+<h3 id="22-estrategia-de-reintentos">2.2 Estrategia de Reintentos</h3>
+<ul>
+<li>Se utiliza una política de <strong>retry fijo</strong>.</li>
+<li>No existe backoff exponencial.</li>
+<li>El sistema se considera <strong>UP</strong> aunque solo una fuente haya conectado correctamente.</li>
+<li>Esta lógica constituye uno de los puntos más débiles del MVP y requiere ingeniería adicional para producción real.</li>
+</ul>
+<hr />
+<h2 id="3-despliegue">3. Despliegue</h2>
+<h3 id="31-targets-soportados">3.1 Targets Soportados</h3>
+<ul>
+<li><code>x86_64</code> con GPU.</li>
+<li><code>arm64</code> (Jetson).</li>
+</ul>
+<h3 id="32-proceso-de-build">3.2 Proceso de Build</h3>
+<ul>
+<li>
+<p>El build de imágenes se realiza en <strong>hosts de desarrollo</strong>:</p>
+</li>
+<li>
+<p>Host x86 para imágenes <code>x86_64</code>.</p>
+</li>
+<li>Jetson de desarrollo para imágenes <code>arm64</code>.</li>
+<li>No existe un pipeline CI/CD automatizado.</li>
+</ul>
+<h3 id="33-distribucion-y-activacion">3.3 Distribución y Activación</h3>
+<ul>
+<li>Las imágenes se transfieren manualmente mediante scripts basados en <code>rsync</code>.</li>
+<li>El despliegue implica <strong>detener y reiniciar manualmente</strong> los servicios.</li>
+<li>Se asume un <strong>downtime aproximado de 10 minutos</strong>.</li>
+<li>Este mecanismo no es deseable para el producto final y será reemplazado en fases posteriores.</li>
+</ul>
+<hr />
+<h2 id="4-gestion-de-recursos-y-fallos-conocidos">4. Gestión de Recursos y Fallos Conocidos</h2>
+<h3 id="41-saturacion-de-recursos">4.1 Saturación de Recursos</h3>
+<ul>
+<li>La saturación de CPU, GPU o memoria es un escenario esperado.</li>
+<li>El sistema no implementa mecanismos automáticos de throttling ni degradación controlada.</li>
+</ul>
+<h3 id="42-disponibilidad-de-fuentes">4.2 Disponibilidad de Fuentes</h3>
+<ul>
+<li>
+<p>El sistema puede fallar si:</p>
+</li>
+<li>
+<p>La fuente no está disponible durante la inicialización.</p>
+</li>
+<li>La fuente deja de estar disponible tras haberse conectado al menos una vez.</li>
+<li>El comportamiento ante estos escenarios no está completamente determinado y forma parte de la deuda técnica del MVP.</li>
+</ul>
+<h3 id="43-criterios-de-fallo-del-proceso">4.3 Criterios de Fallo del Proceso</h3>
+<ul>
+<li>Los criterios formales para terminar el proceso (fatal vs recoverable) <strong>no están definidos</strong>.</li>
+<li>
+<p>Requiere análisis adicional para:</p>
+</li>
+<li>
+<p>OOM en GPU o RAM.</p>
+</li>
+<li>Bloqueos del pipeline.</li>
+<li>Degradación sostenida (frame drop, latencia).</li>
+</ul>
+<hr />
+<h2 id="5-pipeline-de-memoria-y-zero-copy">5. Pipeline de Memoria y Zero-Copy</h2>
+<ul>
+<li>No se garantiza <strong>zero-copy end-to-end</strong>.</li>
+<li>
+<p>Limitaciones principales:</p>
+</li>
+<li>
+<p>Modificación de frames en CPU durante la fase de dibujo (OpenCV), especialmente en segmentación.</p>
+</li>
+<li>Modelos que requieren entrada en <code>float32</code>.</li>
+<li>Copias implícitas realizadas por PyTorch durante inferencia.</li>
+<li>En Jetson, la arquitectura de memoria unificada reduce el costo respecto a x86, pero <strong>no elimina las copias</strong>.</li>
+<li>Conclusión: zero-copy solo es posible dentro de los límites impuestos por Python + CUDA + PyTorch.</li>
+</ul>
+<hr />
+<h2 id="6-metricas-y-observabilidad">6. Métricas y Observabilidad</h2>
+<p>Las métricas de producción <strong>no están completamente definidas</strong> en el MVP.</p>
+<p>Este documento deja abierto determinar:</p>
+<ul>
+<li>Qué métricas serán recolectadas (FPS, frame drop, latencia, uso de recursos).</li>
+<li>Nivel de granularidad (global vs por stream).</li>
+<li>Medio de exposición (logs, stdout, endpoint).</li>
+</ul>
+<hr />
+<h2 id="7-configuracion-y-seguridad">7. Configuración y Seguridad</h2>
+<ul>
+<li>La política de configuración (build-time vs runtime) <strong>no está definida</strong>.</li>
+<li>Aspectos de seguridad (credenciales, secretos, autenticación de fuentes) quedan <strong>fuera de scope del MVP</strong>.</li>
+</ul>
+<hr />
+<h2 id="8-limitaciones-del-mvp">8. Limitaciones del MVP</h2>
+<ul>
+<li>Operación manual.</li>
+<li>Downtime aceptado.</li>
+<li>Sin HA.</li>
+<li>Sin auto-recovery robusto.</li>
+<li>Observabilidad limitada.</li>
+</ul>
+<p>Estas limitaciones son conocidas y se consideran aceptables únicamente en el contexto de MVP.</p>
 
 
 

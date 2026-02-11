@@ -264,24 +264,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview draft
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -298,80 +280,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#project-scope" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Project Scope
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#design-principles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Design Principles
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#current-state-mvp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Current State (MVP)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#target-audience" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Target Audience
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-read-this-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How to Read This Documentation
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -391,7 +299,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture draft
+    Architecture
   
 
     
@@ -532,69 +440,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#project-scope" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Project Scope
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#design-principles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Design Principles
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#current-state-mvp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Current State (MVP)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#target-audience" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Target Audience
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-read-this-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How to Read This Documentation
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -611,6 +456,10 @@
 
 
 <h1 id="overview-draft">Overview <strong><em>draft</em></strong></h1>
+<h1 id="stream-inference-engine">Stream Inference Engine</h1>
+<p>This project implements a real-time video inference system designed to process multiple concurrent RTSP streams under strict latency and resource constraints.</p>
+<p>The system targets continuous operation (24/7) on a single GPU host, prioritizing predictable degradation over maximum throughput. The primary design goal is not peak performance, but controlled behavior under load: bounded latency, explicit backpressure, and failure isolation between streams.</p>
+<p>This documentation describes the system from an engineering perspective, focusing on architectural boundaries, performance characteristics, and design trade-offs rather than implementation details.</p>
 <p>This project presents a technical overview of a <a href="http://mindcolab.com">MindColab</a>'s new <em>real-time video processing</em> <strong><em>engine</em></strong> designed to use interchangeable <em>AI</em> models to perform inference over multiple continuous video streams. The system, hereafter referred to as <em>inference engine</em>, acts as a core piece for a microservice architecture used to deliver a commercial service called "ironstream". To make the <em>engine</em> a reliable solution, the implementation and internal design need to meet key requirements such as <em>24/7 availability</em>, <em>efficient use of computational resources</em>, <em>state-of-the-art frameworks</em> and <em>extensibility and customization of inference features</em>.</p>
 <p>The primary goal is not to showcase a finished product, but to <strong>document engineering decisions</strong>, trade-offs, and real-world limitations encountered while building a functional <em>MVP</em> under practical constraints such as time, hardware, and system complexity.</p>
 <p>The system evolved from an initial CPU-only implementation—unable to sustain real-time performance—into a GPU-accelerated architecture based on <strong>GStreamer</strong>, <strong>CUDA/NVMM</strong>, and decoupled inference components. </p>

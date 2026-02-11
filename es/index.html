@@ -27,7 +27,7 @@
     
     
       
-        <title>Motor de inferencia de Streams - Project Documentation</title>
+        <title>Stream Inference Engine - Project Documentation</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#motor-de-inferencia-de-streams" class="md-skip">
+        <a href="#stream-inference-engine" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Motor de inferencia de Streams
+              Stream Inference Engine
             
           </span>
         </div>
@@ -235,6 +235,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Inference Engine
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -242,7 +260,7 @@
   <span class="md-ellipsis">
     
   
-    Motor de inferencia de Streams
+    Stream Inference Engine
   
 
     
@@ -251,6 +269,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#proposito-del-sistema-problem-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Propósito del sistema (Problem Space)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supuestos-del-contexto-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supuestos del contexto (Assumptions)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restricciones-no-negociables-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restricciones no negociables (Constraints)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postura-operativa-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postura operativa del sistema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limites-explicitos-de-responsabilidad-responsibility-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Límites explícitos de responsabilidad (Responsibility Boundaries)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estado-actual-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estado actual del sistema
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -270,7 +373,7 @@
   <span class="md-ellipsis">
     
   
-    1 overview
+    Overview
   
 
     
@@ -297,7 +400,7 @@
   <span class="md-ellipsis">
     
   
-    2 architecture
+    Architecture
   
 
     
@@ -324,7 +427,7 @@
   <span class="md-ellipsis">
     
   
-    3 performance
+    Performance
   
 
     
@@ -351,7 +454,7 @@
   <span class="md-ellipsis">
     
   
-    4 engineering decisions
+    Engineering Decisions
   
 
     
@@ -378,7 +481,7 @@
   <span class="md-ellipsis">
     
   
-    5 limitations
+    Limitations
   
 
     
@@ -405,7 +508,7 @@
   <span class="md-ellipsis">
     
   
-    6 production
+    Producción (MVP)
   
 
     
@@ -438,6 +541,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#proposito-del-sistema-problem-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Propósito del sistema (Problem Space)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supuestos-del-contexto-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supuestos del contexto (Assumptions)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restricciones-no-negociables-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restricciones no negociables (Constraints)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postura-operativa-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postura operativa del sistema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limites-explicitos-de-responsabilidad-responsibility-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Límites explícitos de responsabilidad (Responsibility Boundaries)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estado-actual-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estado actual del sistema
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -453,8 +630,69 @@
 
 
 
-<h1 id="motor-de-inferencia-de-streams">Motor de inferencia de Streams</h1>
-<p>Documentación Técnica</p>
+<h1 id="stream-inference-engine">Stream Inference Engine</h1>
+<p>Este documento define el alcance funcional y operativo del Stream Inference Engine. Describe el problema que resuelve, las restricciones impuestas por el contexto del MVP, los supuestos técnicos bajo los que opera y los límites explícitos de responsabilidad del sistema. No detalla implementación interna ni decisiones de ingeniería específicas, sino el marco contractual y operativo bajo el cual el sistema debe evaluarse.</p>
+<h2 id="proposito-del-sistema-problem-space">Propósito del sistema (Problem Space)</h2>
+<ul>
+<li>Procesar múltiples streams de video concurrentes en tiempo real.</li>
+<li>Ejecutar inferencia sobre streams de video y generar salida visual.</li>
+<li>Publicar el resultado como stream de video, no como metadata estructurada.</li>
+<li>Operar en contexto productivo B2B, no como servicio genérico o self-service.</li>
+<li>Definir “tiempo real” mediante frame-drop rate (&lt; 5% respecto a la entrada).</li>
+<li>Se considera tiempo real cuando el frame-drop rate &lt; 5% respecto al framerate de entrada.</li>
+</ul>
+<hr />
+<h2 id="supuestos-del-contexto-assumptions">Supuestos del contexto (Assumptions)</h2>
+<ul>
+<li>Las fuentes de video son cámaras remotas externas.</li>
+<li>Las fuentes exponen streams vía RTSP.</li>
+<li>El codec de entrada es H.264 (impuesto por el contexto del MVP).</li>
+<li>El protocolo de salida es RTSP.</li>
+<li>La inferencia se ejecuta prioritariamente sobre GPU.</li>
+<li>El sistema se despliega sobre plataformas x86_64 y arm64 (Jetson).</li>
+<li>Varias decisiones técnicas fueron impuestas por el contexto organizacional del MVP.</li>
+</ul>
+<hr />
+<h2 id="restricciones-no-negociables-constraints">Restricciones no negociables (Constraints)</h2>
+<ul>
+<li>El sistema no controla el protocolo ni el codec de las fuentes.</li>
+<li>El sistema no controla la disponibilidad ni estabilidad de la red.</li>
+<li>La salida debe mantenerse en tiempo real bajo la métrica definida.</li>
+<li>La salida es exclusivamente video con overlays; no se emite metadata adicional.</li>
+<li>Se priorizan continuidad, estabilidad y latencia por sobre optimización extrema.</li>
+<li>El servicio se entrega directamente en un contexto B2B (sin elasticidad automática).</li>
+</ul>
+<hr />
+<h2 id="postura-operativa-del-sistema">Postura operativa del sistema</h2>
+<ul>
+<li>El sistema valida la alcanzabilidad de la fuente antes de iniciar el procesamiento.</li>
+<li>Ante pérdida de conexión, el sistema reintenta según configuración.</li>
+<li>Si se excede el número de reintentos, el stream se considera fallido.</li>
+<li>En el estado actual del MVP no existen mecanismos automáticos de limitación de carga.</li>
+<li>Solo se ofrecen configuraciones consideradas aceptables para no degradar performance.</li>
+</ul>
+<hr />
+<h2 id="limites-explicitos-de-responsabilidad-responsibility-boundaries">Límites explícitos de responsabilidad (Responsibility Boundaries)</h2>
+<ul>
+<li>El sistema no garantiza la calidad ni corrección de la inferencia.</li>
+<li>La accuracy es responsabilidad del modelo cargado.</li>
+<li>El sistema no garantiza accesibilidad de las fuentes.</li>
+<li>Fallas de red están fuera de scope.</li>
+<li>Fallas del emisor del stream están fuera de scope.</li>
+<li>Fallas de sistemas consumidores de la salida están fuera de scope.</li>
+<li>El sistema no garantiza optimización óptima de recursos en el estado actual del MVP.</li>
+</ul>
+<hr />
+<h2 id="estado-actual-del-sistema">Estado actual del sistema</h2>
+<ul>
+<li>El sistema se encuentra en estado MVP.</li>
+<li>Demuestra viabilidad funcional end-to-end:</li>
+<li>inicio de streams</li>
+<li>ejecución de inferencia</li>
+<li>visualización del resultado en un frontend</li>
+<li>Existen limitaciones conocidas de consumo de recursos (RAM, uso parcial de NVENC/NVDEC).</li>
+<li>Estas limitaciones se reconocen como deuda técnica y no como fallas funcionales.</li>
+</ul>
 
 
 
