@@ -75,7 +75,7 @@ Las limitaciones aquí expuestas reflejan restricciones técnicas observadas, de
 
 ## Resolved Technical Debt
 
-- Se eliminó la **cache en CPU del módulo de dibujado**, reduciendo el consumo excesivo de RAM observado en versiones anteriores.
+- Se eliminó la **cache de frames completos en CPU del módulo de dibujado**, reduciendo el consumo excesivo de RAM observado en versiones anteriores. El módulo mantiene cache de resultados de inferencia y metadata de dibujado entre frames, pero ya no almacena copias de frames en memoria CPU.
 
 ---
 
