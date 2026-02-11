@@ -66,7 +66,7 @@ Inference Engine
 - Necesidad de consumir RTSP y generar frames directamente en GPU.
 - **Stack seleccionado**
 - GStreamer + DeepStream para ingestión y procesamiento GPU-native.
-- TensorRT como dependencia directa de DeepStream.
+- TensorRT como parte del runtime NVIDIA (disponible a través del SDK de DeepStream y CUDA Toolkit, no como dependencia declarada del proyecto).
 - **Frameworks de inferencia**
 - YOLO como primer framework por:
   - Abundancia de modelos.
