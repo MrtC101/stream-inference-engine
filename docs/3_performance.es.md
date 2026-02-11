@@ -1,10 +1,6 @@
 # Performance
 
-## Objetivo del capítulo
-Describir el rendimiento del sistema bajo **máxima carga aceptable** en el contexto del MVP.  
-El objetivo no es exponer el procedimiento de medición ni el análisis detallado, sino **mostrar resultados mínimos de benchmark** que permitan identificar el punto a partir del cual agregar un stream adicional provoca una degradación perceptible del servicio.
-
-Este capítulo no pretende ser un documento de benchmarking exhaustivo ni comparativo.
+Esta sección establece el comportamiento del sistema bajo la máxima carga considerada aceptable en el alcance del MVP. Define el entorno de validez, los criterios formales de “real-time”, las métricas utilizadas y sus limitaciones, y presenta resultados sintéticos de benchmark orientados a identificar el punto de degradación al incrementar la cantidad de streams en paralelo. No constituye un estudio exhaustivo de benchmarking, sino una delimitación explícita del límite operativo actual y su interpretación técnica.
 
 ---
 

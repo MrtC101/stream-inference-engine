@@ -1,7 +1,6 @@
 # Limitations
 
-Esta sección describe las limitaciones actuales del sistema en el estado de MVP.  
-Las limitaciones aquí expuestas reflejan restricciones técnicas observadas, decisiones de implementación y alcances deliberadamente postergados, y no deben interpretarse como límites fundamentales del diseño.
+Esta sección explicita las restricciones técnicas observadas en el estado actual del MVP, diferenciando límites derivados de implementación, entorno y prioridades de alcance respecto de limitaciones estructurales del diseño. Define los bordes operativos actuales del sistema en términos de concurrencia, zero-copy, métricas, escalabilidad y observabilidad, estableciendo qué comportamientos son inherentes al estado presente y cuáles constituyen deuda técnica planificada para evolución futura.
 
 ---
 

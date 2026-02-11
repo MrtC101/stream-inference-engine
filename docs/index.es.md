@@ -1,5 +1,7 @@
 # Stream Inference Engine
 
+Este documento define el alcance funcional y operativo del Stream Inference Engine. Describe el problema que resuelve, las restricciones impuestas por el contexto del MVP, los supuestos técnicos bajo los que opera y los límites explícitos de responsabilidad del sistema. No detalla implementación interna ni decisiones de ingeniería específicas, sino el marco contractual y operativo bajo el cual el sistema debe evaluarse.
+
 ## Propósito del sistema (Problem Space)
 
 - Procesar múltiples streams de video concurrentes en tiempo real.
@@ -7,6 +9,7 @@
 - Publicar el resultado como stream de video, no como metadata estructurada.
 - Operar en contexto productivo B2B, no como servicio genérico o self-service.
 - Definir “tiempo real” mediante frame-drop rate (< 5% respecto a la entrada).
+- Se considera tiempo real cuando el frame-drop rate < 5% respecto al framerate de entrada.
 
 ---
 

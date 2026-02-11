@@ -1,5 +1,7 @@
 # Engineering Decisions
 
+Este capítulo documenta las decisiones técnicas estructurales que definieron la arquitectura actual del sistema, incluyendo motivaciones, restricciones del entorno, alternativas descartadas y costos asumidos. Expone cómo las prioridades del MVP —estabilidad, viabilidad funcional y extensibilidad— condicionaron elecciones en separación de procesos, uso de GPU, gestión de memoria, métricas y desacoplamiento entre componentes, así como las implicancias técnicas que estas decisiones generan para la evolución futura del engine.
+
 ## 1. Objetivos técnicos y prioridades
 - **Objetivos primarios**
   - Best-effort zero-copy a lo largo del pipeline.

@@ -1,5 +1,7 @@
 # Architecture
 
+Esta sección describe la descomposición estructural del sistema en módulos conceptuales, el flujo de datos y control entre ellos, y los mecanismos de comunicación utilizados. Define las dependencias externas críticas (hardware, drivers y frameworks), los límites actuales de escalabilidad bajo el hardware objetivo y las métricas consideradas para evaluar comportamiento. También delimita el grado de extensibilidad de los componentes y el modelo de ownership dentro del alcance del MVP.
+
 ## Módulos conceptuales
 - API: Comunicación con desarrolladores y otros servicios, validación básica de configuraciones y pesos, administración de base de datos.
 - Engine: Orquestador de submódulos, interactúa con la base de datos mediante polling.

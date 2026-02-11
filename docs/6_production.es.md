@@ -1,175 +1,126 @@
-# Performance
+# Producción (MVP)
 
-## Objetivo del capítulo
-Describir el rendimiento del sistema bajo **máxima carga aceptable** en el contexto del MVP.  
-El objetivo no es exponer el procedimiento de medición ni el análisis detallado, sino **mostrar resultados mínimos de benchmark** que permitan identificar el punto a partir del cual agregar un stream adicional provoca una degradación perceptible del servicio.
-
-Este capítulo no pretende ser un documento de benchmarking exhaustivo ni comparativo.
+Esta sección delimita el comportamiento operativo del sistema en su estado actual bajo un entorno productivo controlado de tipo single-node. Define supuestos de ejecución, restricciones de despliegue, límites de resiliencia y ausencia de automatización avanzada, dejando explícito qué garantías mínimas existen y qué aspectos permanecen como deuda técnica. No constituye un diseño definitivo de producción ni establece compromisos formales de disponibilidad o SLA.
 
 ---
 
-## Alcance y contexto de validez
-Los resultados presentados en este documento son **válidos únicamente** bajo el siguiente entorno controlado:
+## 1. Scope de Producción
 
-- Arquitectura: x86_64
-- GPU: NVIDIA Tesla V100
-- CPU: 6 núcleos
-- RAM: 16 GB
-- VRAM: 16 GB
-- CUDA: 12.6
-- DeepStream: 7.1
-- TensorRT: 10.3
-- Modelos evaluados:
-  - YOLO Small
-  - YOLO Medium
-  - YOLO Large
-- Streams homogéneos
-- Resoluciones entre 480p y 1080p
-- FPS de entrada: 25–30 FPS
-
-Cualquier variación fuera de este entorno invalida la extrapolación directa de los resultados.
+* Arquitectura **single-node**.
+* Se asume **1 GPU por host**.
+* No se contempla **alta disponibilidad (HA)** ni despliegue **multi-node**.
+* La escalabilidad horizontal queda fuera de scope del MVP.
+* El límite práctico de streams está condicionado tanto por consumo de recursos como por restricciones arquitectónicas del pipeline.
 
 ---
 
-## Definición de carga
-Se entiende por **carga** la cantidad de streams procesándose en paralelo, cada uno asociado a uno o más modelos de inferencia.
+## 2. Arquitectura de Ejecución
 
-El incremento de carga impacta directamente en:
-- FPS efectivo
-- Frame drop rate
-- Latencias promedio
+### 2.1 Ciclo de vida del Engine
 
-La degradación comienza cuando el sistema no puede sostener el procesamiento en tiempo real para todos los streams activos.
+* El engine se ejecuta de forma **persistente** y no finaliza por inactividad.
+* Permanece en espera indefinida de solicitudes de `run`.
+* Si **ninguna fuente conecta durante la inicialización**, el sistema no se considera desplegado funcionalmente y queda en estado de espera.
+* Se asume que, en ese escenario, los `run` serán solicitados nuevamente de forma externa.
+* Este comportamiento es **susceptible de cambio** en futuras iteraciones.
 
----
+### 2.2 Estrategia de Reintentos
 
-## Criterios de aceptación (Real-Time)
-El estado del sistema se clasifica según el **frame drop rate** agregado:
-
-- **0% – 1%**  
-  Tiempo real óptimo. Máximo rendimiento aceptable.
-- **1% – 5%**  
-  Rendimiento aceptable para el MVP.
-- **> 5%**  
-  El servicio deja de considerarse real-time.
-
-Estos umbrales son específicos del MVP y están orientados a validación de negocio, no a SLA productivos.
+* Se utiliza una política de **retry fijo**.
+* No existe backoff exponencial.
+* El sistema se considera **UP** aunque solo una fuente haya conectado correctamente.
+* Esta lógica constituye uno de los puntos más débiles del MVP y requiere ingeniería adicional para producción real.
 
 ---
 
-## Metodología de medición (alto nivel)
-- Las métricas:
-  - Excluyen warm-up y creación de pipelines
-  - Se capturan en régimen estable
-  - Asumen streams homogéneos
-- Métricas por stream:
-  - Se capturan cada **N segundos**
-  - Cada valor por stream es un promedio temporal
-- Métricas del sistema:
-  - Se capturan cada **M segundos**
-  - Representan promedios agregados de todos los streams
+## 3. Despliegue
 
-No se realiza detección ni eliminación de outliers. Se asume su existencia y se considera deuda técnica pendiente.
+### 3.1 Targets Soportados
 
----
+* `x86_64` con GPU.
+* `arm64` (Jetson).
 
-## Métricas utilizadas
-Las métricas presentadas son agregados (promedios o máximos) de métricas por stream:
+### 3.2 Proceso de Build
 
-- FPS
-- Frame drop rate
-- Latencia de procesamiento
-- Latencia end-to-end aproximada
-- Uso de GPU (memoria y cómputo)
-- Uso de RAM y swap
+* El build de imágenes se realiza en **hosts de desarrollo**:
 
-El **frame drop rate** se utiliza como métrica principal de rendimiento por ser la más representativa dadas las limitaciones actuales de trazabilidad de frames.
+  * Host x86 para imágenes `x86_64`.
+  * Jetson de desarrollo para imágenes `arm64`.
+* No existe un pipeline CI/CD automatizado.
+
+### 3.3 Distribución y Activación
+
+* Las imágenes se transfieren manualmente mediante scripts basados en `rsync`.
+* El despliegue implica **detener y reiniciar manualmente** los servicios.
+* Se asume un **downtime aproximado de 10 minutos**.
+* Este mecanismo no es deseable para el producto final y será reemplazado en fases posteriores.
 
 ---
 
-## Limitaciones de medición
-- No se mide jitter
-- No se mide fairness entre streams
-- No se mide latencia end-to-end real del sistema completo
-- No se evalúa precisión, exactitud ni calidad de inferencia
-- Las métricas de pipeline 2 no se consideran confiables para evaluar rendimiento real
+## 4. Gestión de Recursos y Fallos Conocidos
 
-La pérdida de identidad de frame entre pipelines impide el cálculo de latencia end-to-end real.
+### 4.1 Saturación de Recursos
 
----
+* La saturación de CPU, GPU o memoria es un escenario esperado.
+* El sistema no implementa mecanismos automáticos de throttling ni degradación controlada.
 
-## Resultados de benchmark (resumen)
+### 4.2 Disponibilidad de Fuentes
 
-### Configuración A
-_(Placeholder – completar con resultados)_
+* El sistema puede fallar si:
 
-- Número de streams:
-- Modelo:
-- Resolución:
-- FPS de entrada:
-- Frame drop rate:
-- FPS promedio:
-- Uso de GPU:
-- Uso de RAM:
+  * La fuente no está disponible durante la inicialización.
+  * La fuente deja de estar disponible tras haberse conectado al menos una vez.
+* El comportamiento ante estos escenarios no está completamente determinado y forma parte de la deuda técnica del MVP.
 
----
+### 4.3 Criterios de Fallo del Proceso
 
-### Configuración B
-_(Placeholder – completar con resultados)_
+* Los criterios formales para terminar el proceso (fatal vs recoverable) **no están definidos**.
+* Requiere análisis adicional para:
 
-- Número de streams:
-- Modelo:
-- Resolución:
-- FPS de entrada:
-- Frame drop rate:
-- FPS promedio:
-- Uso de GPU:
-- Uso de RAM:
+  * OOM en GPU o RAM.
+  * Bloqueos del pipeline.
+  * Degradación sostenida (frame drop, latencia).
 
 ---
 
-### Configuración C
-_(Placeholder – completar con resultados)_
+## 5. Pipeline de Memoria y Zero-Copy
 
-- Número de streams:
-- Modelo:
-- Resolución:
-- FPS de entrada:
-- Frame drop rate:
-- FPS promedio:
-- Uso de GPU:
-- Uso de RAM:
+* No se garantiza **zero-copy end-to-end**.
+* Limitaciones principales:
 
----
-
-## Interpretación de resultados
-Los resultados muestran que el MVP presenta un **límite práctico de streams en paralelo**, determinado principalmente por consumo de GPU.
-
-Agregar un stream adicional con características similares a los evaluados provoca:
-- Incremento no lineal del frame drop rate
-- Degradación progresiva del real-time
-
-Este límite no es una restricción teórica del hardware, sino una consecuencia del estado actual de la implementación.
+  * Modificación de frames en CPU durante la fase de dibujo (OpenCV), especialmente en segmentación.
+  * Modelos que requieren entrada en `float32`.
+  * Copias implícitas realizadas por PyTorch durante inferencia.
+* En Jetson, la arquitectura de memoria unificada reduce el costo respecto a x86, pero **no elimina las copias**.
+* Conclusión: zero-copy solo es posible dentro de los límites impuestos por Python + CUDA + PyTorch.
 
 ---
 
-## Implicancias y evolución esperada
-- El límite de streams del MVP es una **limitación de eficiencia**, no de arquitectura.
-- Con mejoras en:
-  - Uso de memoria
-  - Zero-copy efectivo
-  - Control de carga
-  - Métricas más precisas  
-  Es esperable sostener las métricas del mejor caso con mayor cantidad de streams sobre el mismo hardware.
+## 6. Métricas y Observabilidad
 
-La evolución futura del sistema debería priorizar **escalabilidad horizontal por stream**, manteniendo los umbrales definidos en este documento.
+Las métricas de producción **no están completamente definidas** en el MVP.
+
+Este documento deja abierto determinar:
+
+* Qué métricas serán recolectadas (FPS, frame drop, latencia, uso de recursos).
+* Nivel de granularidad (global vs por stream).
+* Medio de exposición (logs, stdout, endpoint).
 
 ---
 
-## Fuera de alcance
-Este capítulo no cubre:
-- Procedimientos detallados de benchmarking
-- Automatización de control de carga
-- Escalabilidad multinodo
-- SLA productivos
-- Análisis estadístico profundo de métricas
+## 7. Configuración y Seguridad
+
+* La política de configuración (build-time vs runtime) **no está definida**.
+* Aspectos de seguridad (credenciales, secretos, autenticación de fuentes) quedan **fuera de scope del MVP**.
+
+---
+
+## 8. Limitaciones del MVP
+
+* Operación manual.
+* Downtime aceptado.
+* Sin HA.
+* Sin auto-recovery robusto.
+* Observabilidad limitada.
+
+Estas limitaciones son conocidas y se consideran aceptables únicamente en el contexto de MVP.
