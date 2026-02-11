@@ -1,4 +1,4 @@
-# Performance
+# Rendimiento
 
 Esta sección establece el comportamiento del sistema bajo la máxima carga considerada aceptable en el alcance del MVP. Define el entorno de validez, los criterios formales de “real-time”, las métricas utilizadas y sus limitaciones, y presenta resultados sintéticos de benchmark orientados a identificar el punto de degradación al incrementar la cantidad de streams en paralelo. No constituye un estudio exhaustivo de benchmarking, sino una delimitación explícita del límite operativo actual y su interpretación técnica.
 

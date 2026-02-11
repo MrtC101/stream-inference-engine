@@ -1,4 +1,4 @@
-# Stream Inference Engine
+# Motor de Inferencia de streams
 
 Este documento define el alcance funcional y operativo del Stream Inference Engine. Describe el problema que resuelve, las restricciones impuestas por el contexto del MVP, los supuestos técnicos bajo los que opera y los límites explícitos de responsabilidad del sistema. No detalla implementación interna ni decisiones de ingeniería específicas, sino el marco contractual y operativo bajo el cual el sistema debe evaluarse.
 

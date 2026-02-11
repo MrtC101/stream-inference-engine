@@ -1,4 +1,4 @@
-# Overview
+# Resumen
 
 Esta sección describe la naturaleza del Stream Inference Engine, su posición dentro de la arquitectura global y las responsabilidades que asume en el procesamiento de streams. Define los límites funcionales del sistema, su modelo de integración con otros servicios, la gestión de configuraciones y estado, así como el comportamiento ante errores. Finalmente, contextualiza el estado actual como MVP y las líneas de evolución orientadas a escalabilidad y mejora de observabilidad.
 
