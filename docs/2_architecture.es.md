@@ -15,7 +15,39 @@ Esta sección describe la descomposición estructural del sistema en módulos co
 - Transforms: Puente entre Processing y Stream/File Manager, permite el paso de frames entre pipelines.
 - Flujo de datos conceptual: Los frames y resultados de inferencia fluyen del Stream/File Manager → Transform → Processing (incluyendo dibujado y reglas) → Transform → Stream/File Manager → Server RTSP. La API y la base de datos actúan como mediadores de control y configuración.
 
-**[Aquí iría el diagrama conceptual del flujo de datos y control entre los módulos]**
+```mermaid
+flowchart LR
+    subgraph Gstreamer Processing Pipeline
+        A[RTSP Input]
+        B[Decoder]
+        D[Overlay drawing]
+        E[Encoder]
+        F[Shared Memory IPC]
+
+        A --> B --> C --> D --> E --> F
+    end
+
+    subgraph Processing Module
+        C[Processing Module]
+    
+    end
+
+   subgraph Gstreamer Serve Pipeline
+        G[Shared Memory IPC]
+        H[Encoder]
+        I[RTSP Server]
+
+        G --> H --> I
+    end
+
+    subgraph Control Plane
+        J[Stream Manager]
+        K[Health Monitor]
+        L[Configuration]
+
+        J --> K --> L
+    end
+```
 
 ---
 

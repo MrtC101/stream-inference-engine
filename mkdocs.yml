@@ -4,6 +4,9 @@ site_url: https://mrtc101.github.io/stream-inference-engine
 theme:
   name: material
   language: en
+  features:
+    - content.code.copy
+    - content.code.annotate
 
 use_directory_urls: true
 
@@ -17,3 +20,14 @@ plugins:
           build: true
         - locale: es
           name: Español
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.details
+  - attr_list
+  - md_in_html
