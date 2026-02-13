@@ -1,171 +1,146 @@
 # Rendimiento
 
-Esta sección establece el comportamiento del sistema bajo la máxima carga considerada aceptable en el alcance del MVP. Define el entorno de validez, los criterios formales de “real-time”, las métricas utilizadas y sus limitaciones, y presenta resultados sintéticos de benchmark orientados a identificar el punto de degradación al incrementar la cantidad de streams en paralelo. No constituye un estudio exhaustivo de benchmarking, sino una delimitación explícita del límite operativo actual y su interpretación técnica.
+Esta sección describe el modelo de evaluación de rendimiento del sistema en el contexto del MVP. Define el entorno de validez, los criterios formales de “real-time”, las métricas utilizadas y sus limitaciones. No constituye un benchmark comparativo ni expone capacidad máxima del sistema.
 
 ---
 
 ## Alcance y contexto de validez
-Los resultados presentados en este documento son **válidos únicamente** bajo el siguiente entorno controlado:
 
-- Arquitectura: x86_64
-- GPU: NVIDIA Tesla V100
-- CPU: 6 núcleos
-- RAM: 16 GB
-- VRAM: 16 GB
-- CUDA: 12.6
-- DeepStream: 7.1
-- TensorRT: 10.3
-- Modelos evaluados:
-  - YOLO Small
-  - YOLO Medium
-  - YOLO Large
-- Streams homogéneos
-- Resoluciones entre 480p y 1080p
-- FPS de entrada: 25–30 FPS
+Las consideraciones de este documento son válidas únicamente bajo un entorno controlado equivalente al utilizado durante el desarrollo del MVP:
 
-Cualquier variación fuera de este entorno invalida la extrapolación directa de los resultados.
+- Arquitectura x86_64  
+- GPU NVIDIA clase datacenter  
+- CPU multinúcleo  
+- CUDA + TensorRT + DeepStream compatibles  
+- Streams homogéneos  
+- Resoluciones entre 480p y 1080p  
+- FPS de entrada en rango 25–30  
+
+Cualquier variación en hardware, drivers, modelos o configuración invalida la extrapolación directa del comportamiento descrito.
 
 ---
 
 ## Definición de carga
-Se entiende por **carga** la cantidad de streams procesándose en paralelo, cada uno asociado a uno o más modelos de inferencia.
 
-El incremento de carga impacta directamente en:
-- FPS efectivo
-- Frame drop rate
-- Latencias promedio
+Se entiende por **carga** la cantidad de streams procesados en paralelo, cada uno asociado a uno o más modelos de inferencia.
 
-La degradación comienza cuando el sistema no puede sostener el procesamiento en tiempo real para todos los streams activos.
+El incremento de carga impacta en:
+
+- FPS efectivo por stream  
+- Frame drop rate agregado  
+- Latencias promedio  
+- Utilización de GPU y memoria  
+
+El sistema presenta degradación progresiva cuando la contención de recursos impide sostener el procesamiento en tiempo real para todos los streams activos.
 
 ---
 
 ## Criterios de aceptación (Real-Time)
-El estado del sistema se clasifica según el **frame drop rate** agregado:
+
+El estado del sistema se clasifica según el **frame drop rate agregado**:
 
 - **0% – 1%**  
-  Tiempo real óptimo. Máximo rendimiento aceptable.
+  Tiempo real óptimo dentro del alcance del MVP.
 - **1% – 5%**  
-  Rendimiento aceptable para el MVP.
+  Rendimiento aceptable para validación funcional.
 - **> 5%**  
-  El servicio deja de considerarse real-time.
+  El servicio deja de considerarse real-time en el contexto del MVP.
 
-Estos umbrales son específicos del MVP y están orientados a validación de negocio, no a SLA productivos.
+Estos umbrales están definidos con fines de validación técnica interna y no representan SLA productivos.
+
+El estado real-time del sistema se determina utilizando el valor agregado correspondiente a `workers_frame_drop_rate_avg`.
 
 ---
 
 ## Metodología de medición (alto nivel)
-- Las métricas:
-  - Excluyen warm-up y creación de pipelines
-  - Se capturan en régimen estable
-  - Asumen streams homogéneos
-- Métricas por stream:
-  - Se capturan cada **N segundos**
-  - Cada valor por stream es un promedio temporal
-- Métricas del sistema:
-  - Se capturan cada **M segundos**
-  - Representan promedios agregados de todos los streams
 
-No se realiza detección ni eliminación de outliers. Se asume su existencia y se considera deuda técnica pendiente.
+- Las métricas excluyen warm-up y creación de pipelines.
+- Se capturan únicamente en régimen estable.
+- Se asume homogeneidad entre streams.
+- Las métricas por stream se promedian temporalmente.
+- Las métricas del sistema son agregaciones periódicas de todas las métricas por stream.
+- No se realiza detección ni eliminación de outliers.
+
+El objetivo es caracterizar comportamiento general bajo carga, no realizar análisis estadístico exhaustivo.
 
 ---
 
 ## Métricas utilizadas
-Las métricas presentadas son agregados (promedios o máximos) de métricas por stream:
 
-- FPS
-- Frame drop rate
-- Latencia de procesamiento
-- Latencia end-to-end aproximada
-- Uso de GPU (memoria y cómputo)
-- Uso de RAM y swap
+Las métricas utilizadas son agregados persistidos por el Engine y derivados del modelo `system_metrics`.
 
-El **frame drop rate** se utiliza como métrica principal de rendimiento por ser la más representativa dadas las limitaciones actuales de trazabilidad de frames.
+Se consideran:
+
+### Worker pipelines
+- `workers_fps_avg`
+- `workers_frame_drop_rate_avg`
+- `workers_processing_latency_avg_ms`
+- `workers_e2e_latency_avg_ms`
+
+### Factory pipelines
+- `factories_fps_avg`
+- `factories_e2e_latency_avg_ms`
+
+### Recursos del sistema
+- `gpu_compute_percent`
+- `gpu_memory_percent`
+- `ram_percent`
+- `cpu_percent`
+
+El **frame drop rate** es la métrica principal de evaluación, ya que representa de forma directa la incapacidad del sistema de sostener el flujo de frames en tiempo real.
+
+---
+
+## Comportamiento bajo incremento de carga
+
+A medida que aumenta la cantidad de streams en paralelo:
+
+- El uso de GPU tiende a crecer hasta aproximarse al punto de saturación.
+- El frame drop rate aumenta de forma no lineal.
+- La latencia end-to-end promedio se incrementa por contención de recursos.
+- El FPS efectivo por stream puede degradarse progresivamente.
+
+El punto de degradación no es una propiedad teórica del hardware, sino una consecuencia del estado actual de la implementación.
+
+No se publica en este documento el límite cuantitativo de streams sostenibles.
 
 ---
 
 ## Limitaciones de medición
-- No se mide jitter
-- No se mide fairness entre streams
-- No se mide latencia end-to-end real del sistema completo
-- No se evalúa precisión, exactitud ni calidad de inferencia
-- Las métricas de pipeline 2 no se consideran confiables para evaluar rendimiento real
 
-La pérdida de identidad de frame entre pipelines impide el cálculo de latencia end-to-end real.
+- No se mide jitter.
+- No se mide fairness entre streams.
+- No se calcula latencia end-to-end real con trazabilidad de frame completa.
+- No se evalúa precisión ni calidad de inferencia.
+- No se realiza análisis estadístico profundo.
 
----
-
-## Resultados de benchmark (resumen)
-
-### Configuración A
-_(Placeholder – completar con resultados)_
-
-- Número de streams:
-- Modelo:
-- Resolución:
-- FPS de entrada:
-- Frame drop rate:
-- FPS promedio:
-- Uso de GPU:
-- Uso de RAM:
-
----
-
-### Configuración B
-_(Placeholder – completar con resultados)_
-
-- Número de streams:
-- Modelo:
-- Resolución:
-- FPS de entrada:
-- Frame drop rate:
-- FPS promedio:
-- Uso de GPU:
-- Uso de RAM:
-
----
-
-### Configuración C
-_(Placeholder – completar con resultados)_
-
-- Número de streams:
-- Modelo:
-- Resolución:
-- FPS de entrada:
-- Frame drop rate:
-- FPS promedio:
-- Uso de GPU:
-- Uso de RAM:
-
----
-
-## Interpretación de resultados
-Los resultados muestran que el MVP presenta un **límite práctico de streams en paralelo**, determinado principalmente por consumo de GPU.
-
-Agregar un stream adicional con características similares a los evaluados provoca:
-- Incremento no lineal del frame drop rate
-- Degradación progresiva del real-time
-
-Este límite no es una restricción teórica del hardware, sino una consecuencia del estado actual de la implementación.
+La pérdida de identidad de frame entre pipelines impide el cálculo exacto de latencia end-to-end real.
 
 ---
 
 ## Implicancias y evolución esperada
-- El límite de streams del MVP es una **limitación de eficiencia**, no de arquitectura.
-- Con mejoras en:
-  - Uso de memoria
-  - Zero-copy efectivo
-  - Control de carga
-  - Métricas más precisas  
-  Es esperable sostener las métricas del mejor caso con mayor cantidad de streams sobre el mismo hardware.
 
-La evolución futura del sistema debería priorizar **escalabilidad horizontal por stream**, manteniendo los umbrales definidos en este documento.
+El límite operativo actual del MVP está determinado principalmente por eficiencia de implementación y uso de recursos, no por restricciones estructurales de arquitectura.
+
+Mejoras en:
+
+- Gestión de memoria
+- Reducción de copias innecesarias
+- Control dinámico de carga
+- Instrumentación de métricas más precisa  
+
+deberían permitir aumentar la capacidad efectiva manteniendo los umbrales definidos de real-time.
+
+La evolución futura prioriza escalabilidad horizontal por stream y control explícito de degradación.
 
 ---
 
 ## Fuera de alcance
+
 Este capítulo no cubre:
+
+- Capacidad máxima exacta del sistema
 - Procedimientos detallados de benchmarking
-- Automatización de control de carga
-- Escalabilidad multinodo
+- Comparativas con otras implementaciones
 - SLA productivos
-- Análisis estadístico profundo de métricas
+- Escalabilidad multinodo
