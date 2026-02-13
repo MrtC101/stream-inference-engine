@@ -29,7 +29,7 @@
     
     
       
-        <title>Performance - Project Documentation</title>
+        <title>Rendimiento - Project Documentation</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#performance" class="md-skip">
+        <a href="#rendimiento" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Performance
+              Rendimiento
             
           </span>
         </div>
@@ -235,7 +235,7 @@
   <span class="md-ellipsis">
     
   
-    Stream Inference Engine
+    Motor de Inferencia de streams
   
 
     
@@ -262,7 +262,7 @@
   <span class="md-ellipsis">
     
   
-    Overview
+    Resumen
   
 
     
@@ -289,7 +289,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture
+    Arquitectura
   
 
     
@@ -325,7 +325,7 @@
   <span class="md-ellipsis">
     
   
-    Performance
+    Rendimiento
   
 
     
@@ -343,7 +343,7 @@
   <span class="md-ellipsis">
     
   
-    Performance
+    Rendimiento
   
 
     
@@ -421,36 +421,14 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#limitaciones-de-medicion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Limitaciones de medición
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#resultados-de-benchmark-resumen" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Resultados de benchmark (resumen)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Resultados de benchmark (resumen)">
+    <nav class="md-nav" aria-label="Métricas utilizadas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#configuracion-a" class="md-nav__link">
+  <a href="#worker-pipelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuración A
+        Worker pipelines
       
     </span>
   </a>
@@ -458,10 +436,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuracion-b" class="md-nav__link">
+  <a href="#factory-pipelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuración B
+        Factory pipelines
       
     </span>
   </a>
@@ -469,10 +447,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuracion-c" class="md-nav__link">
+  <a href="#recursos-del-sistema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuración C
+        Recursos del sistema
       
     </span>
   </a>
@@ -485,10 +463,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interpretacion-de-resultados" class="md-nav__link">
+  <a href="#comportamiento-bajo-incremento-de-carga" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Interpretación de resultados
+        Comportamiento bajo incremento de carga
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitaciones-de-medicion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitaciones de medición
       
     </span>
   </a>
@@ -539,7 +528,7 @@
   <span class="md-ellipsis">
     
   
-    Engineering Decisions
+    Decisiones de diseño
   
 
     
@@ -566,7 +555,7 @@
   <span class="md-ellipsis">
     
   
-    Limitations
+    Limitaciones
   
 
     
@@ -594,6 +583,33 @@
     
   
     Producción (MVP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7_translation_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabla de Traducción
   
 
     
@@ -685,36 +701,14 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#limitaciones-de-medicion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Limitaciones de medición
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#resultados-de-benchmark-resumen" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Resultados de benchmark (resumen)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Resultados de benchmark (resumen)">
+    <nav class="md-nav" aria-label="Métricas utilizadas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#configuracion-a" class="md-nav__link">
+  <a href="#worker-pipelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuración A
+        Worker pipelines
       
     </span>
   </a>
@@ -722,10 +716,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuracion-b" class="md-nav__link">
+  <a href="#factory-pipelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuración B
+        Factory pipelines
       
     </span>
   </a>
@@ -733,10 +727,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuracion-c" class="md-nav__link">
+  <a href="#recursos-del-sistema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuración C
+        Recursos del sistema
       
     </span>
   </a>
@@ -749,10 +743,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interpretacion-de-resultados" class="md-nav__link">
+  <a href="#comportamiento-bajo-incremento-de-carga" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Interpretación de resultados
+        Comportamiento bajo incremento de carga
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitaciones-de-medicion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitaciones de medición
       
     </span>
   </a>
@@ -798,153 +803,123 @@
 
 
 
-<h1 id="performance">Performance</h1>
-<p>Esta sección establece el comportamiento del sistema bajo la máxima carga considerada aceptable en el alcance del MVP. Define el entorno de validez, los criterios formales de “real-time”, las métricas utilizadas y sus limitaciones, y presenta resultados sintéticos de benchmark orientados a identificar el punto de degradación al incrementar la cantidad de streams en paralelo. No constituye un estudio exhaustivo de benchmarking, sino una delimitación explícita del límite operativo actual y su interpretación técnica.</p>
+<h1 id="rendimiento">Rendimiento</h1>
+<p>Esta sección describe el modelo de evaluación de rendimiento del sistema en el contexto del MVP. Define el entorno de validez, los criterios formales de “real-time”, las métricas utilizadas y sus limitaciones. No constituye un benchmark comparativo ni expone capacidad máxima del sistema.</p>
 <hr />
 <h2 id="alcance-y-contexto-de-validez">Alcance y contexto de validez</h2>
-<p>Los resultados presentados en este documento son <strong>válidos únicamente</strong> bajo el siguiente entorno controlado:</p>
+<p>Las consideraciones de este documento son válidas únicamente bajo un entorno controlado equivalente al utilizado durante el desarrollo del MVP:</p>
 <ul>
-<li>Arquitectura: x86_64</li>
-<li>GPU: NVIDIA Tesla V100</li>
-<li>CPU: 6 núcleos</li>
-<li>RAM: 16 GB</li>
-<li>VRAM: 16 GB</li>
-<li>CUDA: 12.6</li>
-<li>DeepStream: 7.1</li>
-<li>TensorRT: 10.3</li>
-<li>Modelos evaluados:</li>
-<li>YOLO Small</li>
-<li>YOLO Medium</li>
-<li>YOLO Large</li>
-<li>Streams homogéneos</li>
-<li>Resoluciones entre 480p y 1080p</li>
-<li>FPS de entrada: 25–30 FPS</li>
+<li>Arquitectura x86_64  </li>
+<li>GPU NVIDIA clase datacenter  </li>
+<li>CPU multinúcleo  </li>
+<li>CUDA + TensorRT + DeepStream compatibles  </li>
+<li>Streams homogéneos  </li>
+<li>Resoluciones entre 480p y 1080p  </li>
+<li>FPS de entrada en rango 25–30  </li>
 </ul>
-<p>Cualquier variación fuera de este entorno invalida la extrapolación directa de los resultados.</p>
+<p>Cualquier variación en hardware, drivers, modelos o configuración invalida la extrapolación directa del comportamiento descrito.</p>
 <hr />
 <h2 id="definicion-de-carga">Definición de carga</h2>
-<p>Se entiende por <strong>carga</strong> la cantidad de streams procesándose en paralelo, cada uno asociado a uno o más modelos de inferencia.</p>
-<p>El incremento de carga impacta directamente en:
-- FPS efectivo
-- Frame drop rate
-- Latencias promedio</p>
-<p>La degradación comienza cuando el sistema no puede sostener el procesamiento en tiempo real para todos los streams activos.</p>
+<p>Se entiende por <strong>carga</strong> la cantidad de streams procesados en paralelo, cada uno asociado a uno o más modelos de inferencia.</p>
+<p>El incremento de carga impacta en:</p>
+<ul>
+<li>FPS efectivo por stream  </li>
+<li>Frame drop rate agregado  </li>
+<li>Latencias promedio  </li>
+<li>Utilización de GPU y memoria  </li>
+</ul>
+<p>El sistema presenta degradación progresiva cuando la contención de recursos impide sostener el procesamiento en tiempo real para todos los streams activos.</p>
 <hr />
 <h2 id="criterios-de-aceptacion-real-time">Criterios de aceptación (Real-Time)</h2>
-<p>El estado del sistema se clasifica según el <strong>frame drop rate</strong> agregado:</p>
+<p>El estado del sistema se clasifica según el <strong>frame drop rate agregado</strong>:</p>
 <ul>
 <li><strong>0% – 1%</strong><br />
-  Tiempo real óptimo. Máximo rendimiento aceptable.</li>
+  Tiempo real óptimo dentro del alcance del MVP.</li>
 <li><strong>1% – 5%</strong><br />
-  Rendimiento aceptable para el MVP.</li>
+  Rendimiento aceptable para validación funcional.</li>
 <li><strong>&gt; 5%</strong><br />
-  El servicio deja de considerarse real-time.</li>
+  El servicio deja de considerarse real-time en el contexto del MVP.</li>
 </ul>
-<p>Estos umbrales son específicos del MVP y están orientados a validación de negocio, no a SLA productivos.</p>
+<p>Estos umbrales están definidos con fines de validación técnica interna y no representan SLA productivos.</p>
+<p>El estado real-time del sistema se determina utilizando el valor agregado correspondiente a <code>workers_frame_drop_rate_avg</code>.</p>
 <hr />
 <h2 id="metodologia-de-medicion-alto-nivel">Metodología de medición (alto nivel)</h2>
 <ul>
-<li>Las métricas:</li>
-<li>Excluyen warm-up y creación de pipelines</li>
-<li>Se capturan en régimen estable</li>
-<li>Asumen streams homogéneos</li>
-<li>Métricas por stream:</li>
-<li>Se capturan cada <strong>N segundos</strong></li>
-<li>Cada valor por stream es un promedio temporal</li>
-<li>Métricas del sistema:</li>
-<li>Se capturan cada <strong>M segundos</strong></li>
-<li>Representan promedios agregados de todos los streams</li>
+<li>Las métricas excluyen warm-up y creación de pipelines.</li>
+<li>Se capturan únicamente en régimen estable.</li>
+<li>Se asume homogeneidad entre streams.</li>
+<li>Las métricas por stream se promedian temporalmente.</li>
+<li>Las métricas del sistema son agregaciones periódicas de todas las métricas por stream.</li>
+<li>No se realiza detección ni eliminación de outliers.</li>
 </ul>
-<p>No se realiza detección ni eliminación de outliers. Se asume su existencia y se considera deuda técnica pendiente.</p>
+<p>El objetivo es caracterizar comportamiento general bajo carga, no realizar análisis estadístico exhaustivo.</p>
 <hr />
 <h2 id="metricas-utilizadas">Métricas utilizadas</h2>
-<p>Las métricas presentadas son agregados (promedios o máximos) de métricas por stream:</p>
+<p>Las métricas utilizadas son agregados persistidos por el Engine y derivados del modelo <code>system_metrics</code>.</p>
+<p>Se consideran:</p>
+<h3 id="worker-pipelines">Worker pipelines</h3>
 <ul>
-<li>FPS</li>
-<li>Frame drop rate</li>
-<li>Latencia de procesamiento</li>
-<li>Latencia end-to-end aproximada</li>
-<li>Uso de GPU (memoria y cómputo)</li>
-<li>Uso de RAM y swap</li>
+<li><code>workers_fps_avg</code></li>
+<li><code>workers_frame_drop_rate_avg</code></li>
+<li><code>workers_processing_latency_avg_ms</code></li>
+<li><code>workers_e2e_latency_avg_ms</code></li>
 </ul>
-<p>El <strong>frame drop rate</strong> se utiliza como métrica principal de rendimiento por ser la más representativa dadas las limitaciones actuales de trazabilidad de frames.</p>
+<h3 id="factory-pipelines">Factory pipelines</h3>
+<ul>
+<li><code>factories_fps_avg</code></li>
+<li><code>factories_e2e_latency_avg_ms</code></li>
+</ul>
+<h3 id="recursos-del-sistema">Recursos del sistema</h3>
+<ul>
+<li><code>gpu_compute_percent</code></li>
+<li><code>gpu_memory_percent</code></li>
+<li><code>ram_percent</code></li>
+<li><code>cpu_percent</code></li>
+</ul>
+<p>El <strong>frame drop rate</strong> es la métrica principal de evaluación, ya que representa de forma directa la incapacidad del sistema de sostener el flujo de frames en tiempo real.</p>
+<hr />
+<h2 id="comportamiento-bajo-incremento-de-carga">Comportamiento bajo incremento de carga</h2>
+<p>A medida que aumenta la cantidad de streams en paralelo:</p>
+<ul>
+<li>El uso de GPU tiende a crecer hasta aproximarse al punto de saturación.</li>
+<li>El frame drop rate aumenta de forma no lineal.</li>
+<li>La latencia end-to-end promedio se incrementa por contención de recursos.</li>
+<li>El FPS efectivo por stream puede degradarse progresivamente.</li>
+</ul>
+<p>El punto de degradación no es una propiedad teórica del hardware, sino una consecuencia del estado actual de la implementación.</p>
+<p>No se publica en este documento el límite cuantitativo de streams sostenibles.</p>
 <hr />
 <h2 id="limitaciones-de-medicion">Limitaciones de medición</h2>
 <ul>
-<li>No se mide jitter</li>
-<li>No se mide fairness entre streams</li>
-<li>No se mide latencia end-to-end real del sistema completo</li>
-<li>No se evalúa precisión, exactitud ni calidad de inferencia</li>
-<li>Las métricas de pipeline 2 no se consideran confiables para evaluar rendimiento real</li>
+<li>No se mide jitter.</li>
+<li>No se mide fairness entre streams.</li>
+<li>No se calcula latencia end-to-end real con trazabilidad de frame completa.</li>
+<li>No se evalúa precisión ni calidad de inferencia.</li>
+<li>No se realiza análisis estadístico profundo.</li>
 </ul>
-<p>La pérdida de identidad de frame entre pipelines impide el cálculo de latencia end-to-end real.</p>
-<hr />
-<h2 id="resultados-de-benchmark-resumen">Resultados de benchmark (resumen)</h2>
-<h3 id="configuracion-a">Configuración A</h3>
-<p><em>(Placeholder – completar con resultados)</em></p>
-<ul>
-<li>Número de streams:</li>
-<li>Modelo:</li>
-<li>Resolución:</li>
-<li>FPS de entrada:</li>
-<li>Frame drop rate:</li>
-<li>FPS promedio:</li>
-<li>Uso de GPU:</li>
-<li>Uso de RAM:</li>
-</ul>
-<hr />
-<h3 id="configuracion-b">Configuración B</h3>
-<p><em>(Placeholder – completar con resultados)</em></p>
-<ul>
-<li>Número de streams:</li>
-<li>Modelo:</li>
-<li>Resolución:</li>
-<li>FPS de entrada:</li>
-<li>Frame drop rate:</li>
-<li>FPS promedio:</li>
-<li>Uso de GPU:</li>
-<li>Uso de RAM:</li>
-</ul>
-<hr />
-<h3 id="configuracion-c">Configuración C</h3>
-<p><em>(Placeholder – completar con resultados)</em></p>
-<ul>
-<li>Número de streams:</li>
-<li>Modelo:</li>
-<li>Resolución:</li>
-<li>FPS de entrada:</li>
-<li>Frame drop rate:</li>
-<li>FPS promedio:</li>
-<li>Uso de GPU:</li>
-<li>Uso de RAM:</li>
-</ul>
-<hr />
-<h2 id="interpretacion-de-resultados">Interpretación de resultados</h2>
-<p>Los resultados muestran que el MVP presenta un <strong>límite práctico de streams en paralelo</strong>, determinado principalmente por consumo de GPU.</p>
-<p>Agregar un stream adicional con características similares a los evaluados provoca:
-- Incremento no lineal del frame drop rate
-- Degradación progresiva del real-time</p>
-<p>Este límite no es una restricción teórica del hardware, sino una consecuencia del estado actual de la implementación.</p>
+<p>La pérdida de identidad de frame entre pipelines impide el cálculo exacto de latencia end-to-end real.</p>
 <hr />
 <h2 id="implicancias-y-evolucion-esperada">Implicancias y evolución esperada</h2>
+<p>El límite operativo actual del MVP está determinado principalmente por eficiencia de implementación y uso de recursos, no por restricciones estructurales de arquitectura.</p>
+<p>Mejoras en:</p>
 <ul>
-<li>El límite de streams del MVP es una <strong>limitación de eficiencia</strong>, no de arquitectura.</li>
-<li>Con mejoras en:</li>
-<li>Uso de memoria</li>
-<li>Zero-copy efectivo</li>
-<li>Control de carga</li>
-<li>Métricas más precisas<br />
-  Es esperable sostener las métricas del mejor caso con mayor cantidad de streams sobre el mismo hardware.</li>
+<li>Gestión de memoria</li>
+<li>Reducción de copias innecesarias</li>
+<li>Control dinámico de carga</li>
+<li>Instrumentación de métricas más precisa  </li>
 </ul>
-<p>La evolución futura del sistema debería priorizar <strong>escalabilidad horizontal por stream</strong>, manteniendo los umbrales definidos en este documento.</p>
+<p>deberían permitir aumentar la capacidad efectiva manteniendo los umbrales definidos de real-time.</p>
+<p>La evolución futura prioriza escalabilidad horizontal por stream y control explícito de degradación.</p>
 <hr />
 <h2 id="fuera-de-alcance">Fuera de alcance</h2>
-<p>Este capítulo no cubre:
-- Procedimientos detallados de benchmarking
-- Automatización de control de carga
-- Escalabilidad multinodo
-- SLA productivos
-- Análisis estadístico profundo de métricas</p>
+<p>Este capítulo no cubre:</p>
+<ul>
+<li>Capacidad máxima exacta del sistema</li>
+<li>Procedimientos detallados de benchmarking</li>
+<li>Comparativas con otras implementaciones</li>
+<li>SLA productivos</li>
+<li>Escalabilidad multinodo</li>
+</ul>
 
 
 
@@ -994,7 +969,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
