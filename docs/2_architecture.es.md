@@ -15,78 +15,74 @@ Esta sección describe la descomposición estructural del sistema en módulos co
 - Transforms: Puente entre Processing y Stream/File Manager, permite el paso de frames entre pipelines.
 - Flujo de datos conceptual: Los frames y resultados de inferencia fluyen del Stream/File Manager → Transform → Processing (incluyendo dibujado y reglas) → Transform → Stream/File Manager → Server RTSP. La API y la base de datos actúan como mediadores de control y configuración.
 
-```mermaid
-graph TB
-    subgraph API["API"]
-        API_Handlers[Handlers]
-        API_Services[Services]
-        API_Data[Data Access]
-    end
 
+```mermaid
+graph LR
+    API["API REST"]
+    Database[(Database)]
+    StreamEngine["Stream Inference Engine"]
+    API --> Database --> StreamEngine
+
+```
+
+
+```mermaid
+graph LR
     Database[(SQLite)]
 
-    subgraph StreamEngine["Stream Inference Engine"]
-        subgraph Lifecycle["Run Lifecycle Module"]
-            Run_Manager["Run Manager (Starter/Stopper)"]
-            Run_Metrics[Run Metrics Collector]
-        end
-        
-        subgraph Managers["Stream Managers"]
-            StreamMgr[Stream Manager]
-            FileMgr[File Manager]
-        end
-        
-        subgraph Pipelines["GStreamer Pipelines"]
-            subgraph Pipeline_File["Pipeline - File"]
-                CPUGPUPath_File[CPU/GPU Path]
-                subgraph ConfigMgr_File["Configuration Manager"]
-                    DSL_File[DSL Validator]
-                end
-            end
-            subgraph Pipeline_W1["Pipeline - Worker 1"]
-                CPUGPUPath_W1[CPU/GPU Path]
-                subgraph ConfigMgr_W1["Configuration Manager"]
-                    DSL_W1[DSL Validator]
-                end
-            end
-            subgraph Pipeline_WN["Pipeline - Worker N"]
-                CPUGPUPath_WN[CPU/GPU Path]
-                subgraph ConfigMgr_WN["Configuration Manager"]
-                    DSL_WN[DSL Validator]
-                end
+    subgraph Lifecycle["Run Lifecycle Module"]
+        Run_Manager["Run Manager (Starter/Stopper)"]
+        Run_Metrics[Run Metrics Collector]
+    end
+    
+    subgraph Managers["Stream Managers"]
+        StreamMgr[Stream Manager]
+        FileMgr[File Manager]
+    end
+    
+    subgraph Pipelines["GStreamer Pipelines"]
+        subgraph Pipeline_File["Pipeline - File"]
+            CPUGPUPath_File[CPU/GPU Path]
+            subgraph ConfigMgr_File["Configuration Manager"]
+                DSL_File[DSL Validator]
             end
         end
-        
-        subgraph Processors["Frame Processors"]
-            subgraph FP_File["FrameProcessor - File"]
-                FP_File_Draw[Drawing Module]
-                FP_File_Model[Models Module]
-                FP_File_Rules[Rules Module]
-                FP_File_Motion[Motion Detection Module]
+        subgraph Pipeline_W1["Pipeline - Worker 1"]
+            CPUGPUPath_W1[CPU/GPU Path]
+            subgraph ConfigMgr_W1["Configuration Manager"]
+                DSL_W1[DSL Validator]
             end
-            
-            subgraph FP_W1["FrameProcessor - Worker 1"]
-                FP_W1_Draw[Drawing Module]
-                FP_W1_Model[Models Module]
-                FP_W1_Rules[Rules Module]
-                FP_W1_Motion[Motion Detection Module]
-            end
-            
-            subgraph FP_WN["FrameProcessor - Worker N"]
-                FP_WN_Draw[Drawing Module]
-                FP_WN_Model[Models Module]
-                FP_WN_Rules[Rules Module]
-                FP_WN_Motion[Motion Detection Module]
+        end
+        subgraph Pipeline_WN["Pipeline - Worker N"]
+            CPUGPUPath_WN[CPU/GPU Path]
+            subgraph ConfigMgr_WN["Configuration Manager"]
+                DSL_WN[DSL Validator]
             end
         end
     end
-
-    %% Conexiones API con exterior
-    External[External Clients] --> API_Handlers
-
-    %% Flujo interno API (3 niveles)
-    API_Handlers --> API_Services
-    API_Services --> API_Data
+    
+    subgraph Processors["Frame Processors"]
+        subgraph FP_File["FrameProcessor - File"]
+            FP_File_Draw[Drawing Module]
+            FP_File_Model[Models Module]
+            FP_File_Rules[Rules Module]
+            FP_File_Motion[Motion Detection Module]
+        end
+        
+        subgraph FP_W1["FrameProcessor - Worker 1"]
+            FP_W1_Draw[Drawing Module]
+            FP_W1_Model[Models Module]
+            FP_W1_Rules[Rules Module]
+            FP_W1_Motion[Motion Detection Module]
+        end
+        
+        subgraph FP_WN["FrameProcessor - Worker N"]
+            FP_WN_Draw[Drawing Module]
+            FP_WN_Model[Models Module]
+            FP_WN_Rules[Rules Module]
+            FP_WN_Motion[Motion Detection Module]
+        end
+    end
 
     %% Run Lifecycle delega a Stream Managers
     Run_Manager --> StreamMgr
@@ -112,12 +108,9 @@ graph TB
     Run_Metrics -.-> Processors
 
     %% Conexiones con la Base de Datos
-    API_Data <-->|Read/Write| Database
     Database <-->|Read/Write| Lifecycle
 
     style Database fill:#f9f,stroke:#333,stroke-width:3px
-    style API fill:#e1f5ff,stroke:#01579b,stroke-width:2px
-    style StreamEngine fill:#fff3e0,stroke:#e65100,stroke-width:2px
     style Lifecycle fill:#fff9c4,stroke:#f57f17,stroke-width:1px
     style Managers fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
     style Pipelines fill:#f3e5f5,stroke:#6a1b9a,stroke-width:1px
