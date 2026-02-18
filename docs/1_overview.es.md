@@ -76,4 +76,3 @@ Esta sección describe la naturaleza del Stream Inference Engine, su posición d
 - La escalabilidad impactará en throughput y latencia.
 - La medición precisa de métricas es actualmente limitada.
 - La arquitectura de dos pipelines afecta la trazabilidad de los frames.
-s

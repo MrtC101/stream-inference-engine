@@ -3,127 +3,58 @@
 Esta sección describe la descomposición estructural del sistema en módulos conceptuales, el flujo de datos y control entre ellos, y los mecanismos de comunicación utilizados. Define las dependencias externas críticas (hardware, drivers y frameworks), los límites actuales de escalabilidad bajo el hardware objetivo y las métricas consideradas para evaluar comportamiento. También delimita el grado de extensibilidad de los componentes y el modelo de ownership dentro del alcance del MVP.
 
 ## Módulos conceptuales
-- API: Comunicación con desarrolladores y otros servicios, validación básica de configuraciones y pesos, administración de base de datos.
-- Engine: Orquestador de submódulos, interactúa con la base de datos mediante polling.
-- Configuration Validation: Interpreta argumentos del YAML, enlaza templates, contiene el compilador DSL de reglas de inferencia, genera clases que ejecutan reglas por frame.
-- Metrics: Monitorea recursos del sistema y reporta resultados a la base de datos.
-- Processing: Orquesta detección de movimiento, inferencia de modelos, dibujado de frames y ejecución de reglas.
-- Evaluador de reglas: Ejecuta reglas a partir de los resultados de inferencia (orquestado por Processing).
-- Módulo de dibujado: Dibuja y genera metadatos sobre frames según resultados de inferencia y evaluación de reglas (orquestado por Processing).
-- Módulo de modelos: Gestiona carga de pesos y arquitecturas de modelos, valida configuraciones y clases a detectar o segmentar.
-- Stream y File Manager: Ejecuta procesos de inferencia sobre streams o archivos, crea pipelines de GPU/CPU, levanta el servidor RTSP, sirve al Engine.
-- Transforms: Puente entre Processing y Stream/File Manager, permite el paso de frames entre pipelines.
-- Flujo de datos conceptual: Los frames y resultados de inferencia fluyen del Stream/File Manager → Transform → Processing (incluyendo dibujado y reglas) → Transform → Stream/File Manager → Server RTSP. La API y la base de datos actúan como mediadores de control y configuración.
+
+El sistema se organiza en dos planos: control y datos.
+
+**Plano de control**
+- **API**: Interfaz hacia otros servicios. Gestiona configuraciones, pesos de modelos y persistencia en base de datos.
+- **Engine**: Orquestador central. Gestiona el ciclo de vida de los runs mediante polling en la base de datos y coordina Workers y Stream Manager vía IPC.
+- **Base de datos**: Mediador de estado entre API y Engine.
+
+**Plano de datos**
+- **Workers (0..N)**: Procesos independientes, uno por stream activo. Cada Worker ejecuta un Inference Pipeline que ingesta la fuente RTSP, aplica inferencia y dibujado sobre los frames, los codifica en H264 y los escribe en memoria compartida.
+- **Shared Memory**: Mecanismo de transferencia de frames entre Workers y Stream Manager.
+- **Stream Manager**: Proceso central del plano de datos. Contiene el Factory Pipeline, que lee frames desde memoria compartida y los publica a través del servidor RTSP.
 
 
 ```mermaid
-graph LR
-    API["API REST"]
-    Database[(Database)]
-    StreamEngine["Stream Inference Engine"]
-    API --> Database --> StreamEngine
-
-```
-
-
-```mermaid
-graph LR
-    Database[(SQLite)]
-
-    subgraph Lifecycle["Run Lifecycle Module"]
-        Run_Manager["Run Manager (Starter/Stopper)"]
-        Run_Metrics[Run Metrics Collector]
-    end
-    
-    subgraph Managers["Stream Managers"]
-        StreamMgr[Stream Manager]
-        FileMgr[File Manager]
-    end
-    
-    subgraph Pipelines["GStreamer Pipelines"]
-        subgraph Pipeline_File["Pipeline - File"]
-            CPUGPUPath_File[CPU/GPU Path]
-            subgraph ConfigMgr_File["Configuration Manager"]
-                DSL_File[DSL Validator]
-            end
-        end
-        subgraph Pipeline_W1["Pipeline - Worker 1"]
-            CPUGPUPath_W1[CPU/GPU Path]
-            subgraph ConfigMgr_W1["Configuration Manager"]
-                DSL_W1[DSL Validator]
-            end
-        end
-        subgraph Pipeline_WN["Pipeline - Worker N"]
-            CPUGPUPath_WN[CPU/GPU Path]
-            subgraph ConfigMgr_WN["Configuration Manager"]
-                DSL_WN[DSL Validator]
-            end
-        end
-    end
-    
-    subgraph Processors["Frame Processors"]
-        subgraph FP_File["FrameProcessor - File"]
-            FP_File_Draw[Drawing Module]
-            FP_File_Model[Models Module]
-            FP_File_Rules[Rules Module]
-            FP_File_Motion[Motion Detection Module]
-        end
-        
-        subgraph FP_W1["FrameProcessor - Worker 1"]
-            FP_W1_Draw[Drawing Module]
-            FP_W1_Model[Models Module]
-            FP_W1_Rules[Rules Module]
-            FP_W1_Motion[Motion Detection Module]
-        end
-        
-        subgraph FP_WN["FrameProcessor - Worker N"]
-            FP_WN_Draw[Drawing Module]
-            FP_WN_Model[Models Module]
-            FP_WN_Rules[Rules Module]
-            FP_WN_Motion[Motion Detection Module]
-        end
+flowchart TB
+    subgraph CP["Plano de control"]
+        direction TB
+        API["API REST"] <--> DB[(SQLite)] <--> ENG["Engine <br/> (Lifecycle · Polling · IPC)"]
     end
 
-    %% Run Lifecycle delega a Stream Managers
-    Run_Manager --> StreamMgr
-    Run_Manager --> FileMgr
+    subgraph DP["Plano de datos"]
+        direction LR
+        SRC["Fuentes RTSP <br/> (0..N)"]
+        IP["Workers (0..N) <br/> Inference Pipeline <br/> (GStreamer + DeepStream) <br/> Ingestión · Inferencia <br/> Dibujado · Encode"]
+        SHM[/"Shared Memory"/]
+        FP["Stream Manager <br/> Factory Pipeline <br/> RTSP Server"]
+        OUT["Consumidores RTSP <br/> (0..N)"]
+        SRC --> IP
+        IP -->|"frames H264"| SHM --> FP --> OUT
+    end
 
-    %% Stream Managers lanzan Pipelines
-    StreamMgr --> Pipeline_W1 & Pipeline_WN
+    ENG -.-> DP
 
-    %% File Manager lanza Pipeline
-    FileMgr --> Pipeline_File
-    
-    %% CPU/GPU Path conecta a FrameProcessors
-    CPUGPUPath_File --> FP_File
-    CPUGPUPath_W1 --> FP_W1
-    CPUGPUPath_WN --> FP_WN
-    
-    %% Configuration Manager provee servicio a Frame Processors
-    ConfigMgr_File -.->|Service| FP_File
-    ConfigMgr_W1 -.->|Service| FP_W1
-    ConfigMgr_WN -.->|Service| FP_WN
-    
-    %% Run Metrics Collector monitorea Frame Processors
-    Run_Metrics -.-> Processors
+    classDef control fill:#dbeafe,stroke:#3b82f6,color:#1e3a5f
+    classDef data fill:#dcfce7,stroke:#22c55e,color:#14532d
+    classDef external fill:#fef9c3,stroke:#eab308,color:#422006
+    classDef memory fill:#fce7f3,stroke:#ec4899,color:#500724
 
-    %% Conexiones con la Base de Datos
-    Database <-->|Read/Write| Lifecycle
-
-    style Database fill:#f9f,stroke:#333,stroke-width:3px
-    style Lifecycle fill:#fff9c4,stroke:#f57f17,stroke-width:1px
-    style Managers fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
-    style Pipelines fill:#f3e5f5,stroke:#6a1b9a,stroke-width:1px
-    style Processors fill:#fce4ec,stroke:#c2185b,stroke-width:1px
+    class API,DB,ENG control
+    class IP,FP data
+    class SRC,OUT external
+    class SHM memory
 ```
 
 ---
 
 ## Flujo de control y comunicación
-- Los módulos se comunican mediante llamadas a métodos conceptuales entre ellos.
-- Stream Manager utiliza IPC (stdin/stdout) y memoria compartida (shmsink/shmsrc) para coordinar pipelines que corren en procesos separados. Los Transforms procesan frames directamente dentro del mismo proceso mediante llamadas al FrameProcessor.
 - API y Engine se comunican exclusivamente a través de la base de datos.
-- Todos los módulos deben funcionar correctamente para ejecutar un run; si alguno falla, el run no se completa.
+- Engine coordina Workers y Stream Manager mediante IPC (stdin/stdout) con mensajes JSON.
+- Los frames procesados se transfieren entre Workers y Stream Manager a través de memoria compartida.
+- Todos los componentes deben estar operativos para ejecutar un run; si alguno falla, el run no se completa.
 
 ---
 
@@ -145,13 +76,13 @@ graph LR
 
 ## Métricas conceptuales
 - Se mide framedrop rate, latencia end-to-end y latencia de procesamiento.
-- Pipeline 2 mide solo latencia end-to-end, framedrop no es representativo.
+- El Factory Pipeline mide solo latencia end-to-end; el framedrop no es representativo dado que re-consume los mismos frames desde memoria compartida.
 - La medición real es limitada debido a la pérdida de identidad de frames entre pipelines.
 - Futuras mejoras: agregar metadata por frame para trazabilidad entre pipelines y medición precisa de throughput y latencia.
 
 ---
 
-## Extensibilidad y ownershipa
+## Extensibilidad y ownership
 - Módulos como validación de reglas, evaluación de reglas, carga de modelos y dibujado son extensibles, aunque requieren intervención de un desarrollador.
 - Engine orquesta todos los módulos; API desacopla casi totalmente la interacción mediante la base de datos.
 - Diseño conceptual permite escalar y modificar funcionalidades sin afectar otros módulos, respetando límites del MVP.

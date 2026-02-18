@@ -36,19 +36,21 @@ Este capítulo documenta las decisiones técnicas estructurales que definieron l
   - Separación estricta en procesos independientes usando `subprocess`.
 - **Topología resultante**
 
+```
 Inference Engine
 ├─ Stream Manager Bridge (IPC)
 ├─ Stream Manager
-│ ├─ RTSP Server
-│ ├─ Pipeline 1
-│ └─ Workers (0..N)
+│  ├─ RTSP Server
+│  ├─ Factory Pipeline
+│  └─ Workers (0..N)
 └─ Stream Workers
-└─ Pipeline 2 (0..N)
+   └─ Inference Pipeline (0..N)
+```
 
 - Comunicación basada en IPC (stdin/stdout) y memoria compartida.
-- **Separación Pipeline 1 / Pipeline 2**
-- Pipeline 1: ingestión + servidor RTSP.
-- Pipeline 2: procesamiento, inferencia y dibujado.
+- **Separación Factory Pipeline / Inference Pipeline**
+- Factory Pipeline (Stream Manager): lee desde memoria compartida (shmsrc) y alimenta el servidor RTSP.
+- Inference Pipeline (Workers): ingestión RTSP → inferencia → dibujado → encode H264 → memoria compartida (shmsink).
 - **Motivación adicional**
 - Incompatibilidad entre runtime de servidor RTSP y librerías DeepStream.
 - Aislamiento del runtime evita colisiones de dependencias (incluyendo versiones previas como Savant).
@@ -92,8 +94,8 @@ Inference Engine
   - Header de metadata persistente por frame.
   - Alto esfuerzo de desarrollo no compatible con tiempos del MVP.
 - **Consecuencia actual**
-- Pipeline 1 genera frames a ~25 FPS.
-- Pipeline 2 consume memoria compartida a ~45 FPS, retransmitiendo el mismo frame varias veces.
+- El Inference Pipeline genera frames procesados a ~25 FPS en memoria compartida.
+- El Factory Pipeline consume memoria compartida a ~45 FPS, retransmitiendo el mismo frame varias veces hacia el servidor RTSP.
 - **Decisiones técnicas específicas**
 1. Uso de DeepStream para generar frames directamente en GPU.
 2. Uso de CuPy para capturar referencias GPU en Python.

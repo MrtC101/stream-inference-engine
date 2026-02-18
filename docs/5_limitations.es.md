@@ -4,7 +4,7 @@ Esta sección explicita las restricciones técnicas observadas en el estado actu
 
 ---
 
-## Stream Concurrency Limit (MVP)
+## Límite de Concurrencia de Streams (MVP)
 
 - El MVP soporta actualmente hasta **6 streams concurrentes** con rendimiento aceptable.
 - Este límite surge de **consumo agregado de recursos** (RAM, VRAM, encoder/decoder por hardware y cómputo GPU), no de una restricción lógica del sistema.
@@ -18,7 +18,7 @@ Esta sección explicita las restricciones técnicas observadas en el estado actu
 
 ---
 
-## Zero-Copy Limitations
+## Limitaciones de Zero-Copy
 
 - No se ha logrado un esquema de **zero-copy completo** a lo largo de todo el pipeline.
 - En plataformas Jetson, aunque RAM y VRAM comparten el mismo chip, el zero-copy total no es viable dentro de los límites actuales de:
@@ -36,7 +36,7 @@ Esta sección explicita las restricciones técnicas observadas en el estado actu
 
 ---
 
-## Metrics and Observability Limitations
+## Limitaciones de Métricas y Observabilidad
 
 - La arquitectura basada en **dos pipelines desacoplados mediante memoria compartida** provoca la **pérdida de identidad de frame** entre pipelines.
 - Esto impide medir de forma precisa:
@@ -53,7 +53,7 @@ Esta sección explicita las restricciones técnicas observadas en el estado actu
 
 ---
 
-## MVP Scope Limitations
+## Limitaciones de Alcance del MVP
 
 - El sistema se desarrolló como MVP orientado a **validación técnica y de negocio**, no como producto final.
 - No se implementaron:
@@ -72,13 +72,13 @@ Esta sección explicita las restricciones técnicas observadas en el estado actu
 
 ---
 
-## Resolved Technical Debt
+## Deuda Técnica Resuelta
 
 - Se eliminó la **cache de frames completos en CPU del módulo de dibujado**, reduciendo el consumo excesivo de RAM observado en versiones anteriores. El módulo mantiene cache de resultados de inferencia y metadata de dibujado entre frames, pero ya no almacena copias de frames en memoria CPU.
 
 ---
 
-## Deferred Improvements
+## Mejoras Diferidas
 
 Las siguientes limitaciones se consideran abordables en fases futuras de desarrollo:
 
