@@ -1,55 +1,88 @@
 # Architecture
 
-## Módulos conceptuales
-- API: Comunicación con desarrolladores y otros servicios, validación básica de configuraciones y pesos, administración de base de datos.
-- Engine: Orquestador de submódulos, interactúa con la base de datos mediante polling.
-- Configuration Validation: Interpreta argumentos del YAML, enlaza templates, contiene el compilador DSL de reglas de inferencia, genera clases que ejecutan reglas por frame.
-- Metrics: Monitorea recursos del sistema y reporta resultados a la base de datos.
-- Processing: Orquesta detección de movimiento, inferencia de modelos, dibujado de frames y ejecución de reglas.
-- Evaluador de reglas: Ejecuta reglas a partir de los resultados de inferencia (orquestado por Processing).
-- Módulo de dibujado: Dibuja y genera metadatos sobre frames según resultados de inferencia y evaluación de reglas (orquestado por Processing).
-- Módulo de modelos: Gestiona carga de pesos y arquitecturas de modelos, valida configuraciones y clases a detectar o segmentar.
-- Stream y File Manager: Ejecuta procesos de inferencia sobre streams o archivos, crea pipelines de GPU/CPU, levanta el servidor RTSP, sirve al Engine.
-- Transforms: Puente entre Processing y Stream/File Manager, permite el paso de frames entre pipelines.
-- Flujo de datos conceptual: Los frames y resultados de inferencia fluyen del Stream/File Manager → Transform → Processing (incluyendo dibujado y reglas) → Transform → Stream/File Manager → Server RTSP. La API y la base de datos actúan como mediadores de control y configuración.
+This section describes the structural decomposition of the system into conceptual modules, the data and control flow between them, and the communication mechanisms used. It defines critical external dependencies (hardware, drivers, and frameworks), the current scalability limits under the target hardware, and the metrics considered for evaluating behavior. It also delimits the extensibility of components and the ownership model within the MVP scope.
 
-**[Aquí iría el diagrama conceptual del flujo de datos y control entre los módulos]**
+## Conceptual Modules
+
+The system is organized into two planes: control and data.
+
+**Control Plane**
+- **API**: Interface to other services. Manages configurations, model weights, and database persistence.
+- **Engine**: Central orchestrator. Manages the run lifecycle through database polling and coordinates Workers and Stream Manager via IPC.
+- **Database**: State mediator between API and Engine.
+
+**Data Plane**
+- **Workers (0..N)**: Independent processes, one per active stream. Each Worker runs an Inference Pipeline that ingests the RTSP source, applies inference and drawing over frames, encodes them as H264, and writes to shared memory.
+- **Shared Memory**: Frame transfer mechanism between Workers and Stream Manager.
+- **Stream Manager**: Central process of the data plane. Contains the Factory Pipeline, which reads frames from shared memory and publishes them through the RTSP server.
+
+
+```mermaid
+flowchart TB
+    subgraph CP["Control Plane"]
+        direction TB
+        API["REST API"] <--> DB[(SQLite)] <--> ENG["Engine <br/> (Lifecycle · Polling · IPC)"]
+    end
+
+    subgraph DP["Data Plane"]
+        direction LR
+        SRC["RTSP Sources <br/> (0..N)"]
+        IP["Workers (0..N) <br/> Inference Pipeline <br/> (GStreamer + DeepStream) <br/> Ingestion · Inference <br/> Drawing · Encode"]
+        SHM[/"Shared Memory"/]
+        FP["Stream Manager <br/> Factory Pipeline <br/> RTSP Server"]
+        OUT["RTSP Consumers <br/> (0..N)"]
+        SRC --> IP
+        IP -->|"H264 frames"| SHM --> FP --> OUT
+    end
+
+    ENG -.-> DP
+
+    classDef control fill:#dbeafe,stroke:#3b82f6,color:#1e3a5f
+    classDef data fill:#dcfce7,stroke:#22c55e,color:#14532d
+    classDef external fill:#fef9c3,stroke:#eab308,color:#422006
+    classDef memory fill:#fce7f3,stroke:#ec4899,color:#500724
+
+    class API,DB,ENG control
+    class IP,FP data
+    class SRC,OUT external
+    class SHM memory
+```
 
 ---
 
-## Flujo de control y comunicación
-- Los módulos se comunican mediante llamadas a métodos conceptuales entre ellos.
-- Transform utiliza IPC y memoria compartida para coordinar pipelines que corren en procesos separados.
-- API y Engine se comunican exclusivamente a través de la base de datos.
-- Todos los módulos deben funcionar correctamente para ejecutar un run; si alguno falla, el run no se completa.
+## Control Flow and Communication
+- API and Engine communicate exclusively through the database.
+- Engine coordinates Workers and Stream Manager via IPC (stdin/stdout) with JSON messages.
+- Processed frames are transferred between Workers and Stream Manager through shared memory.
+- All components must be operational to execute a run; if any fails, the run does not complete.
 
 ---
 
-## Dependencias externas y hardware
-- Dependencia fuerte de arquitectura GPU: Tesla V100, Google T4, Jetson.
-- Librerías y frameworks requeridos: CUDA 12.6, cuDNN, DeepStream 7.1, pyds, GStreamer plugins, drivers NVIDIA específicos, YOLO, PyTorch, TensorRT.
-- API y Engine dependen de la base de datos (actualmente local).
-- Módulos dependen del hardware disponible para cumplir con rendimiento esperado.
+## External Dependencies and Hardware
+- Strong dependency on GPU architecture: Tesla V100, NVIDIA T4, Jetson.
+- Required libraries and frameworks: CUDA 12.6, cuDNN, DeepStream 7.1, pyds, GStreamer plugins, specific NVIDIA drivers, YOLO, PyTorch, TensorRT.
+- API and Engine depend on the database (currently local).
+- Modules depend on available hardware to meet expected performance.
 
 ---
 
-## Escalabilidad y límites conceptuales
-- Límite actual: 6 streams 1080p con inferencia full-frame usando modelo YOLO nano.
-- Potencial estimado: 12-15 streams con optimización de recursos y sin escalar hardware.
-- Consumo actual para 6 streams: 16GB RAM, <12GB VRAM, GPU Tesla V100, CPU 6 núcleos.
-- Escalar mediante más hardware es más rápido pero costoso; optimización de código puede mejorar eficiencia sin aumentar recursos.
+## Scalability and Conceptual Limits
+- Current limit: 6 1080p streams with full-frame inference using a YOLO nano model.
+- Estimated potential: ~10 streams with resource optimization and without scaling hardware.
+- Current consumption for 6 streams: 16 GB RAM, <12 GB VRAM, Tesla V100 GPU, 6 CPU cores.
+- Scaling via additional hardware is faster but costly; code optimization can improve efficiency without increasing resources.
 
 ---
 
-## Métricas conceptuales
-- Se mide framedrop rate, latencia end-to-end y latencia de procesamiento.
-- Pipeline 2 mide solo latencia end-to-end, framedrop no es representativo.
-- La medición real es limitada debido a la pérdida de identidad de frames entre pipelines.
-- Futuras mejoras: agregar metadata por frame para trazabilidad entre pipelines y medición precisa de throughput y latencia.
+## Conceptual Metrics
+- Frame drop rate, end-to-end latency, and processing latency are measured.
+- The Factory Pipeline measures only end-to-end latency; frame drop is not representative given that it re-consumes the same frames from shared memory.
+- Real measurement is limited due to loss of frame identity between pipelines.
+- Future improvements: add per-frame metadata for traceability between pipelines and precise throughput and latency measurement.
 
 ---
 
-## Extensibilidad y ownership
-- Módulos como validación de reglas, evaluación de reglas, carga de modelos y dibujado son extensibles, aunque requieren intervención de un desarrollador.
-- Engine orquesta todos los módulos; API desacopla casi totalmente la interacción mediante la base de datos.
-- Diseño conceptual permite escalar y modificar funcionalidades sin afectar otros módulos, respetando límites del MVP.
+## Extensibility and Ownership
+- Modules such as rule validation, rule evaluation, model loading, and drawing are extensible, though they require developer intervention.
+- Engine orchestrates all modules; API almost fully decouples interaction through the database.
+- The conceptual design allows scaling and modifying functionality without affecting other modules, within MVP boundaries.

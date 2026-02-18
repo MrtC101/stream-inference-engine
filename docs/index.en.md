@@ -1,43 +1,68 @@
 # Stream Inference Engine
 
-## Problem to solve
+This document defines the functional and operational scope of the Stream Inference Engine. It describes the problem it solves, the constraints imposed by the MVP context, the technical assumptions under which it operates, and the explicit limits of system responsibility. It does not detail internal implementation or specific engineering decisions, but rather the contractual and operational framework under which the system should be evaluated.
 
-This project implements a real-time video inference system designed to process multiple concurrent RTSP streams under strict input, output, performance and resource constraints. 
+## System Purpose (Problem Space)
 
-## Constraints
+- Process multiple concurrent video streams in real time.
+- Run inference on video streams and generate visual output.
+- Publish the result as a video stream, not as structured metadata.
+- Operate in a B2B production context, not as a generic or self-service offering.
+- Define "real time" through frame drop rate (< 5% relative to input framerate).
 
+---
 
-### System Input 
-- All Input streams are from different remote sources.
-- All sources are assumed to stream using RTSP protocol over http/s and are h265 encoded.
-- Remote connection is unstable and can be lost at any time.
+## Context Assumptions
 
-### System Output
-- streams have to be served using RTSP over http and coded in H264 or H256 codec.  
-- Inference results are shown as layouts that are drawn over the frame
-- No metadata can be generated to be transmitted with the stream.
-- Inference should trigger events based on the inference rules declared in a DSL YAML configuration file. 
-These events should be consumed externally in the future.
-- 
+- Video sources are external remote cameras.
+- Sources expose streams via RTSP.
+- Input codec is H.264 (imposed by the MVP context).
+- Output protocol is RTSP.
+- Inference runs primarily on GPU.
+- The system is deployed on x86_64 and arm64 (Jetson) platforms.
+- Several technical decisions were imposed by the organizational context of the MVP.
 
-### System Output
-- Output should be coded in a H264 format stream served by an RTSP server 
-- Achieve real-time output keeping frame drop rate metric under 5% 
-- Inference result overlays must be plotted on top of the input video
-- No ovelayes medata is generated or transfered as output
+---
 
-### Inference Contraints
-- System must be able to process a DSL inference configuration YAML file.
-- System must be able to hot-reload inference configurations while changed.
-- System must provide a templates and configurations processing capability to ensure reusability. 
-- Capability to start and stop inference processing over each different processed stream.
+## Non-Negotiable Constraints
 
-### Resources constraints
-- Reduce CPU usage
-- Do stream decode and encode using hardware
-- Do inference using GPU computation  
+- The system does not control the protocol or codec of the sources.
+- The system does not control network availability or stability.
+- Output must remain real time under the defined metric.
+- Output is exclusively video with overlays; no additional metadata is emitted.
+- Continuity, stability, and latency are prioritized over extreme optimization.
+- The service is delivered directly in a B2B context (without automatic elasticity).
 
-## Responsibility boundaries
-- System must reconnect autocamitaclly if input stream is lost.
-- System must be able to handle multiple concurrent streams.
-- System must provide an API to load configuration files, model weights, and run inference streams over input streams.
+---
+
+## System Operational Posture
+
+- The system validates source reachability before starting processing.
+- Upon connection loss, the system retries according to configuration.
+- If the retry limit is exceeded, the stream is considered failed.
+- In the current MVP state, there are no automatic load-limiting mechanisms.
+- Only configurations considered acceptable to avoid performance degradation are offered.
+
+---
+
+## Explicit Responsibility Boundaries
+
+- The system does not guarantee inference quality or correctness.
+- Accuracy is the responsibility of the loaded model.
+- The system does not guarantee source accessibility.
+- Network failures are out of scope.
+- Failures of the stream emitter are out of scope.
+- Failures of output stream consumers are out of scope.
+- The system does not guarantee optimal resource utilization in the current MVP state.
+
+---
+
+## Current System State
+
+- The system is in MVP state.
+- It demonstrates end-to-end functional viability:
+  - stream startup
+  - inference execution
+  - result visualization in a frontend
+- Known resource consumption limitations exist (RAM, partial NVENC/NVDEC usage).
+- These limitations are recognized as technical debt, not functional failures.
