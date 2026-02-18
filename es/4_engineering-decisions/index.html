@@ -787,19 +787,20 @@
 <li>Separación estricta en procesos independientes usando <code>subprocess</code>.</li>
 <li><strong>Topología resultante</strong></li>
 </ul>
-<p>Inference Engine
+<div class="highlight"><pre><span></span><code>Inference Engine
 ├─ Stream Manager Bridge (IPC)
 ├─ Stream Manager
-│ ├─ RTSP Server
-│ ├─ Pipeline 1
-│ └─ Workers (0..N)
+│  ├─ RTSP Server
+│  ├─ Factory Pipeline
+│  └─ Workers (0..N)
 └─ Stream Workers
-└─ Pipeline 2 (0..N)</p>
+   └─ Inference Pipeline (0..N)
+</code></pre></div>
 <ul>
 <li>Comunicación basada en IPC (stdin/stdout) y memoria compartida.</li>
-<li><strong>Separación Pipeline 1 / Pipeline 2</strong></li>
-<li>Pipeline 1: ingestión + servidor RTSP.</li>
-<li>Pipeline 2: procesamiento, inferencia y dibujado.</li>
+<li><strong>Separación Factory Pipeline / Inference Pipeline</strong></li>
+<li>Factory Pipeline (Stream Manager): lee desde memoria compartida (shmsrc) y alimenta el servidor RTSP.</li>
+<li>Inference Pipeline (Workers): ingestión RTSP → inferencia → dibujado → encode H264 → memoria compartida (shmsink).</li>
 <li><strong>Motivación adicional</strong></li>
 <li>Incompatibilidad entre runtime de servidor RTSP y librerías DeepStream.</li>
 <li>Aislamiento del runtime evita colisiones de dependencias (incluyendo versiones previas como Savant).</li>
@@ -845,8 +846,8 @@
 <li>Header de metadata persistente por frame.</li>
 <li>Alto esfuerzo de desarrollo no compatible con tiempos del MVP.</li>
 <li><strong>Consecuencia actual</strong></li>
-<li>Pipeline 1 genera frames a ~25 FPS.</li>
-<li>Pipeline 2 consume memoria compartida a ~45 FPS, retransmitiendo el mismo frame varias veces.</li>
+<li>El Inference Pipeline genera frames procesados a ~25 FPS en memoria compartida.</li>
+<li>El Factory Pipeline consume memoria compartida a ~45 FPS, retransmitiendo el mismo frame varias veces hacia el servidor RTSP.</li>
 <li><strong>Decisiones técnicas específicas</strong></li>
 <li>Uso de DeepStream para generar frames directamente en GPU.</li>
 <li>Uso de CuPy para capturar referencias GPU en Python.</li>

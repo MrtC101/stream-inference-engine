@@ -29,7 +29,7 @@
     
     
       
-        <title>Engineering Decisions draft - Project Documentation</title>
+        <title>Engineering Decisions - Project Documentation</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#engineering-decisions-draft" class="md-skip">
+        <a href="#engineering-decisions" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Engineering Decisions draft
+              Engineering Decisions
             
           </span>
         </div>
@@ -262,7 +262,7 @@
   <span class="md-ellipsis">
     
   
-    Overview draft
+    Overview
   
 
     
@@ -316,7 +316,7 @@
   <span class="md-ellipsis">
     
   
-    Performance draft
+    Performance
   
 
     
@@ -345,6 +345,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering Decisions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -352,7 +370,7 @@
   <span class="md-ellipsis">
     
   
-    Engineering Decisions draft
+    Engineering Decisions
   
 
     
@@ -361,6 +379,135 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-technical-goals-and-priorities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Technical Goals and Priorities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-process-and-pipeline-separation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Process and Pipeline Separation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-choice-of-gstreamer-deepstream-and-frameworks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Choice of GStreamer, DeepStream, and Frameworks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-memory-and-frame-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Memory and Frame Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-concurrency-load-and-frame-drop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Concurrency, Load, and Frame Drop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-api-database-and-decoupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. API, Database, and Decoupling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-observability-deferred" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Observability (Deferred)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-scope-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Scope Decisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-portability-and-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Portability and Hardware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-future-evolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Future Evolution
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -380,7 +527,7 @@
   <span class="md-ellipsis">
     
   
-    Limitations draft
+    Limitations
   
 
     
@@ -407,7 +554,7 @@
   <span class="md-ellipsis">
     
   
-    Production draft
+    Production (MVP)
   
 
     
@@ -440,6 +587,124 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-technical-goals-and-priorities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Technical Goals and Priorities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-process-and-pipeline-separation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Process and Pipeline Separation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-choice-of-gstreamer-deepstream-and-frameworks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Choice of GStreamer, DeepStream, and Frameworks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-memory-and-frame-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Memory and Frame Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-concurrency-load-and-frame-drop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Concurrency, Load, and Frame Drop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-api-database-and-decoupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. API, Database, and Decoupling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-observability-deferred" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Observability (Deferred)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-scope-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Scope Decisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-portability-and-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Portability and Hardware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-future-evolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Future Evolution
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -455,18 +720,181 @@
 
 
 
-<h1 id="engineering-decisions-draft">Engineering Decisions <strong><em>draft</em></strong></h1>
-<p>Acá se ve madurez.</p>
-<p>Ejemplos de secciones:</p>
-<p>Why GStreamer + DeepStream</p>
-<p>Why GPU-first design</p>
-<p>Why partial zero-copy</p>
-<p>Why Python (and where it hurts)</p>
-<p>En cada una:</p>
-<p>decisión</p>
-<p>beneficio</p>
-<p>costo / limitación</p>
-<p>Eso es pensamiento de ingeniero, no de junior.</p>
+<h1 id="engineering-decisions">Engineering Decisions</h1>
+<p>This chapter documents the structural technical decisions that defined the current system architecture, including motivations, environment constraints, discarded alternatives, and accepted costs. It exposes how the MVP priorities—stability, functional viability, and extensibility—conditioned choices in process separation, GPU usage, memory management, metrics, and decoupling between components, as well as the technical implications these decisions generate for the future evolution of the engine.</p>
+<h2 id="1-technical-goals-and-priorities">1. Technical Goals and Priorities</h2>
+<ul>
+<li><strong>Primary objectives</strong></li>
+<li>Best-effort zero-copy throughout the pipeline.</li>
+<li>High extensibility in the number of models, weights, and inference tasks.</li>
+<li>Always maintain a real-time output.</li>
+<li><strong>Prioritization</strong></li>
+<li>Functional viability was prioritized over absolute performance.</li>
+<li>The system was conceived as an MVP aimed at validating technical and business feasibility.</li>
+<li><strong>Discarded or deferred objectives</strong></li>
+<li>Full end-to-end zero-copy.</li>
+<li>Completely accurate performance metrics.</li>
+<li>Broad inference framework support from the start.</li>
+<li><strong>Initial framework scope</strong></li>
+<li>Primary focus on YOLO.</li>
+<li>Specific models such as Anomalib were explicitly deferred.</li>
+</ul>
+<h2 id="2-process-and-pipeline-separation">2. Process and Pipeline Separation</h2>
+<ul>
+<li><strong>Primary motivation</strong></li>
+<li>Critical incompatibilities between CUDA, Python processing libraries, GStreamer, PyGObject, and DeepStream within the same runtime.</li>
+<li><strong>Observed problems</strong></li>
+<li>Python process crashes without exception capture.</li>
+<li>Failures when:<ul>
+<li>Initializing GStreamer pipelines.</li>
+<li>Accessing GstBuffer from transforms.</li>
+<li>Starting the Python debugger with GStreamer active.</li>
+<li>Creating multiple pipelines in the same runtime.</li>
+<li>Using hardware encoder and decoder simultaneously.</li>
+</ul>
+</li>
+<li><strong>Technical hypothesis</strong></li>
+<li>Non-reentrant CUDA libraries.</li>
+<li>Internal memory state corruption when loaded multiple times in the same runtime.</li>
+<li><strong>Decision</strong></li>
+<li>Strict separation into independent processes using <code>subprocess</code>.</li>
+<li><strong>Resulting topology</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code>Inference Engine
+├─ Stream Manager Bridge (IPC)
+├─ Stream Manager
+│  ├─ RTSP Server
+│  ├─ Factory Pipeline
+│  └─ Workers (0..N)
+└─ Stream Workers
+   └─ Inference Pipeline (0..N)
+</code></pre></div>
+<ul>
+<li>Communication based on IPC (stdin/stdout) and shared memory.</li>
+<li><strong>Factory Pipeline / Inference Pipeline separation</strong></li>
+<li>Factory Pipeline (Stream Manager): reads from shared memory (shmsrc) and feeds the RTSP server.</li>
+<li>Inference Pipeline (Workers): RTSP ingestion → inference → drawing → H264 encode → shared memory (shmsink).</li>
+<li><strong>Additional motivation</strong></li>
+<li>Incompatibility between RTSP server runtime and DeepStream libraries.</li>
+<li>Runtime isolation avoids dependency collisions (including previous versions such as Savant).</li>
+<li><strong>Accepted costs</strong></li>
+<li>Higher latency.</li>
+<li>Longer initialization time.</li>
+<li>Greater operational complexity.</li>
+<li><strong>Benefit</strong></li>
+<li>System stability and consistent execution.</li>
+</ul>
+<h2 id="3-choice-of-gstreamer-deepstream-and-frameworks">3. Choice of GStreamer, DeepStream, and Frameworks</h2>
+<ul>
+<li><strong>Origin of the decision</strong></li>
+<li>GStreamer was an externally imposed requirement.</li>
+<li><strong>Initial implementation discarded</strong></li>
+<li>OpenCV + NumPy on CPU: functionally viable, not viable for GPU zero-copy.</li>
+<li><strong>Motivation for the change</strong></li>
+<li>Need to consume RTSP and generate frames directly on GPU.</li>
+<li><strong>Selected stack</strong></li>
+<li>GStreamer + DeepStream for GPU-native ingestion and processing.</li>
+<li>TensorRT as part of the NVIDIA runtime (available through the DeepStream SDK and CUDA Toolkit, not as a declared project dependency).</li>
+<li><strong>Inference frameworks</strong></li>
+<li>YOLO as the primary framework due to:</li>
+<li>Abundance of models.</li>
+<li>Python-first approach.</li>
+<li>High extensibility without modifying the system core.</li>
+<li><strong>Protocol</strong></li>
+<li>RTSP imposed by external sources (domain problem constraint).</li>
+</ul>
+<h2 id="4-memory-and-frame-management">4. Memory and Frame Management</h2>
+<ul>
+<li><strong>Guiding principle</strong></li>
+<li>Minimize frame copies (CPU↔GPU and GPU↔GPU).</li>
+<li><strong>Benefits</strong></li>
+<li>Lower RAM and VRAM consumption.</li>
+<li>Better throughput.</li>
+<li>Lower frame drop rate.</li>
+<li><strong>Critical decision</strong></li>
+<li>Accept loss of frame identity between pipelines.</li>
+<li><strong>Justification</strong></li>
+<li>Preserving identity requires:</li>
+<li>Additional shared memory allocation.</li>
+<li>Persistent metadata header per frame.</li>
+<li>High development effort incompatible with MVP timelines.</li>
+<li><strong>Current consequence</strong></li>
+<li>The Inference Pipeline generates processed frames at ~25 FPS in shared memory.</li>
+<li>The Factory Pipeline consumes shared memory at ~45 FPS, retransmitting the same frame multiple times to the RTSP server.</li>
+<li><strong>Specific technical decisions</strong></li>
+<li>Use of DeepStream to generate frames directly on GPU.</li>
+<li>Use of CuPy to capture GPU references in Python.</li>
+<li>Use of PyTorch for its device-decoupled tensor abstraction.</li>
+<li>Direct drawing on frame whenever possible.</li>
+<li>Use of metadata + <code>nvdsosd</code> for text and overlays on GPU.</li>
+</ul>
+<h2 id="5-concurrency-load-and-frame-drop">5. Concurrency, Load, and Frame Drop</h2>
+<ul>
+<li><strong>Stream limit</strong></li>
+<li>Not explicitly imposed by code.</li>
+<li>Determined empirically by resource consumption.</li>
+<li><strong>Frame drop</strong></li>
+<li>Accepted as the primary metric.</li>
+<li>It is the most faithful metric given current limitations.</li>
+<li><strong>Backpressure</strong></li>
+<li>Implemented through queues that discard frames before processing.</li>
+<li><strong>Metrics</strong></li>
+<li>Output FPS sufficient to infer frame drop rate.</li>
+<li><strong>Load control</strong></li>
+<li>Not implemented.</li>
+<li>If implemented, it would be based on resource consumption, not performance metrics.</li>
+</ul>
+<h2 id="6-api-database-and-decoupling">6. API, Database, and Decoupling</h2>
+<ul>
+<li><strong>Decision</strong></li>
+<li>Decouple API and Inference Engine through the database.</li>
+<li><strong>Motivation</strong></li>
+<li>Avoid state synchronization between heterogeneous runtimes.</li>
+<li>Allow multiple inference engine instances in the future.</li>
+<li><strong>Current state</strong></li>
+<li>Local database.</li>
+<li>Future support for horizontal scaling not implemented.</li>
+</ul>
+<h2 id="7-observability-deferred">7. Observability (Deferred)</h2>
+<ul>
+<li><strong>State</strong></li>
+<li>Partially addressed.</li>
+<li>Limited by loss of frame identity.</li>
+<li><strong>Technical debt</strong></li>
+<li>Precise per-frame latency metrics.</li>
+<li>Full pipeline traceability.</li>
+</ul>
+<h2 id="8-scope-decisions">8. Scope Decisions</h2>
+<ul>
+<li><strong>Excluded from MVP</strong></li>
+<li>Advanced load control.</li>
+<li>Exhaustive metrics.</li>
+<li>Full lifecycle management.</li>
+<li><strong>Reasoning</strong></li>
+<li>Not critical for validating business feasibility.</li>
+</ul>
+<h2 id="9-portability-and-hardware">9. Portability and Hardware</h2>
+<ul>
+<li><strong>Supported platforms</strong></li>
+<li>x86: Tesla V100, T4.</li>
+<li>Jetson: JetPack 6.1.</li>
+<li><strong>Objective</strong></li>
+<li>Viability in both edge and datacenter environments.</li>
+<li><strong>Result</strong></li>
+<li>Requirement met, though with pending technical debt.</li>
+</ul>
+<h2 id="10-future-evolution">10. Future Evolution</h2>
+<ul>
+<li><strong>Conditioning decisions</strong></li>
+<li>Decoupled pipeline architecture with shared memory.</li>
+<li><strong>Replaceable components</strong></li>
+<li>Inference frameworks.</li>
+<li>Models and weights.</li>
+<li><strong>Pending review</strong></li>
+<li>Performance optimization.</li>
+<li>Library compatibility.</li>
+<li>Observability and metrics.</li>
+</ul>
 
 
 

@@ -2,104 +2,104 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/1_overview/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/1_overview/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/1_overview/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/2_architecture/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/2_architecture/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/2_architecture/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/3_performance/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/3_performance/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/3_performance/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/4_engineering-decisions/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/4_engineering-decisions/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/4_engineering-decisions/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/5_limitations/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/5_limitations/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/5_limitations/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/6_production/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/6_production/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/6_production/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/es/1_overview/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/1_overview/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/1_overview/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/es/2_architecture/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/2_architecture/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/2_architecture/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/es/3_performance/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/3_performance/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/3_performance/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/es/4_engineering-decisions/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/4_engineering-decisions/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/4_engineering-decisions/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/es/5_limitations/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/5_limitations/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/5_limitations/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/es/6_production/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/6_production/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/6_production/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/es/7_translation_table/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/7_translation_table/"/>
     </url>
     <url>
         <loc>https://mrtc101.github.io/stream-inference-engine/es/</loc>
-        <lastmod>2026-02-13</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://mrtc101.github.io/stream-inference-engine/es/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://mrtc101.github.io/stream-inference-engine/"/>

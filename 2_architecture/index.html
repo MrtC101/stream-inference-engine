@@ -262,7 +262,7 @@
   <span class="md-ellipsis">
     
   
-    Overview draft
+    Overview
   
 
     
@@ -342,10 +342,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#modulos-conceptuales" class="md-nav__link">
+  <a href="#conceptual-modules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Módulos conceptuales
+        Conceptual Modules
       
     </span>
   </a>
@@ -353,10 +353,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#flujo-de-control-y-comunicacion" class="md-nav__link">
+  <a href="#control-flow-and-communication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Flujo de control y comunicación
+        Control Flow and Communication
       
     </span>
   </a>
@@ -364,10 +364,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dependencias-externas-y-hardware" class="md-nav__link">
+  <a href="#external-dependencies-and-hardware" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dependencias externas y hardware
+        External Dependencies and Hardware
       
     </span>
   </a>
@@ -375,10 +375,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#escalabilidad-y-limites-conceptuales" class="md-nav__link">
+  <a href="#scalability-and-conceptual-limits" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Escalabilidad y límites conceptuales
+        Scalability and Conceptual Limits
       
     </span>
   </a>
@@ -386,10 +386,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metricas-conceptuales" class="md-nav__link">
+  <a href="#conceptual-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Métricas conceptuales
+        Conceptual Metrics
       
     </span>
   </a>
@@ -397,10 +397,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#extensibilidad-y-ownership" class="md-nav__link">
+  <a href="#extensibility-and-ownership" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Extensibilidad y ownership
+        Extensibility and Ownership
       
     </span>
   </a>
@@ -429,7 +429,7 @@
   <span class="md-ellipsis">
     
   
-    Performance draft
+    Performance
   
 
     
@@ -456,7 +456,7 @@
   <span class="md-ellipsis">
     
   
-    Engineering Decisions draft
+    Engineering Decisions
   
 
     
@@ -483,7 +483,7 @@
   <span class="md-ellipsis">
     
   
-    Limitations draft
+    Limitations
   
 
     
@@ -510,7 +510,7 @@
   <span class="md-ellipsis">
     
   
-    Production draft
+    Production (MVP)
   
 
     
@@ -550,10 +550,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#modulos-conceptuales" class="md-nav__link">
+  <a href="#conceptual-modules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Módulos conceptuales
+        Conceptual Modules
       
     </span>
   </a>
@@ -561,10 +561,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#flujo-de-control-y-comunicacion" class="md-nav__link">
+  <a href="#control-flow-and-communication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Flujo de control y comunicación
+        Control Flow and Communication
       
     </span>
   </a>
@@ -572,10 +572,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dependencias-externas-y-hardware" class="md-nav__link">
+  <a href="#external-dependencies-and-hardware" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dependencias externas y hardware
+        External Dependencies and Hardware
       
     </span>
   </a>
@@ -583,10 +583,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#escalabilidad-y-limites-conceptuales" class="md-nav__link">
+  <a href="#scalability-and-conceptual-limits" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Escalabilidad y límites conceptuales
+        Scalability and Conceptual Limits
       
     </span>
   </a>
@@ -594,10 +594,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metricas-conceptuales" class="md-nav__link">
+  <a href="#conceptual-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Métricas conceptuales
+        Conceptual Metrics
       
     </span>
   </a>
@@ -605,10 +605,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#extensibilidad-y-ownership" class="md-nav__link">
+  <a href="#extensibility-and-ownership" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Extensibilidad y ownership
+        Extensibility and Ownership
       
     </span>
   </a>
@@ -633,59 +633,83 @@
 
 
 <h1 id="architecture">Architecture</h1>
-<h2 id="modulos-conceptuales">Módulos conceptuales</h2>
-<ul>
-<li>API: Comunicación con desarrolladores y otros servicios, validación básica de configuraciones y pesos, administración de base de datos.</li>
-<li>Engine: Orquestador de submódulos, interactúa con la base de datos mediante polling.</li>
-<li>Configuration Validation: Interpreta argumentos del YAML, enlaza templates, contiene el compilador DSL de reglas de inferencia, genera clases que ejecutan reglas por frame.</li>
-<li>Metrics: Monitorea recursos del sistema y reporta resultados a la base de datos.</li>
-<li>Processing: Orquesta detección de movimiento, inferencia de modelos, dibujado de frames y ejecución de reglas.</li>
-<li>Evaluador de reglas: Ejecuta reglas a partir de los resultados de inferencia (orquestado por Processing).</li>
-<li>Módulo de dibujado: Dibuja y genera metadatos sobre frames según resultados de inferencia y evaluación de reglas (orquestado por Processing).</li>
-<li>Módulo de modelos: Gestiona carga de pesos y arquitecturas de modelos, valida configuraciones y clases a detectar o segmentar.</li>
-<li>Stream y File Manager: Ejecuta procesos de inferencia sobre streams o archivos, crea pipelines de GPU/CPU, levanta el servidor RTSP, sirve al Engine.</li>
-<li>Transforms: Puente entre Processing y Stream/File Manager, permite el paso de frames entre pipelines.</li>
-<li>Flujo de datos conceptual: Los frames y resultados de inferencia fluyen del Stream/File Manager → Transform → Processing (incluyendo dibujado y reglas) → Transform → Stream/File Manager → Server RTSP. La API y la base de datos actúan como mediadores de control y configuración.</li>
-</ul>
-<p><strong>[Aquí iría el diagrama conceptual del flujo de datos y control entre los módulos]</strong></p>
+<p>This section describes the structural decomposition of the system into conceptual modules, the data and control flow between them, and the communication mechanisms used. It defines critical external dependencies (hardware, drivers, and frameworks), the current scalability limits under the target hardware, and the metrics considered for evaluating behavior. It also delimits the extensibility of components and the ownership model within the MVP scope.</p>
+<h2 id="conceptual-modules">Conceptual Modules</h2>
+<p>The system is organized into two planes: control and data.</p>
+<p><strong>Control Plane</strong>
+- <strong>API</strong>: Interface to other services. Manages configurations, model weights, and database persistence.
+- <strong>Engine</strong>: Central orchestrator. Manages the run lifecycle through database polling and coordinates Workers and Stream Manager via IPC.
+- <strong>Database</strong>: State mediator between API and Engine.</p>
+<p><strong>Data Plane</strong>
+- <strong>Workers (0..N)</strong>: Independent processes, one per active stream. Each Worker runs an Inference Pipeline that ingests the RTSP source, applies inference and drawing over frames, encodes them as H264, and writes to shared memory.
+- <strong>Shared Memory</strong>: Frame transfer mechanism between Workers and Stream Manager.
+- <strong>Stream Manager</strong>: Central process of the data plane. Contains the Factory Pipeline, which reads frames from shared memory and publishes them through the RTSP server.</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph CP["Control Plane"]
+        direction TB
+        API["REST API"] &lt;--&gt; DB[(SQLite)] &lt;--&gt; ENG["Engine &lt;br/&gt; (Lifecycle · Polling · IPC)"]
+    end
+
+    subgraph DP["Data Plane"]
+        direction LR
+        SRC["RTSP Sources &lt;br/&gt; (0..N)"]
+        IP["Workers (0..N) &lt;br/&gt; Inference Pipeline &lt;br/&gt; (GStreamer + DeepStream) &lt;br/&gt; Ingestion · Inference &lt;br/&gt; Drawing · Encode"]
+        SHM[/"Shared Memory"/]
+        FP["Stream Manager &lt;br/&gt; Factory Pipeline &lt;br/&gt; RTSP Server"]
+        OUT["RTSP Consumers &lt;br/&gt; (0..N)"]
+        SRC --&gt; IP
+        IP --&gt;|"H264 frames"| SHM --&gt; FP --&gt; OUT
+    end
+
+    ENG -.-&gt; DP
+
+    classDef control fill:#dbeafe,stroke:#3b82f6,color:#1e3a5f
+    classDef data fill:#dcfce7,stroke:#22c55e,color:#14532d
+    classDef external fill:#fef9c3,stroke:#eab308,color:#422006
+    classDef memory fill:#fce7f3,stroke:#ec4899,color:#500724
+
+    class API,DB,ENG control
+    class IP,FP data
+    class SRC,OUT external
+    class SHM memory</code></pre>
 <hr />
-<h2 id="flujo-de-control-y-comunicacion">Flujo de control y comunicación</h2>
+<h2 id="control-flow-and-communication">Control Flow and Communication</h2>
 <ul>
-<li>Los módulos se comunican mediante llamadas a métodos conceptuales entre ellos.</li>
-<li>Transform utiliza IPC y memoria compartida para coordinar pipelines que corren en procesos separados.</li>
-<li>API y Engine se comunican exclusivamente a través de la base de datos.</li>
-<li>Todos los módulos deben funcionar correctamente para ejecutar un run; si alguno falla, el run no se completa.</li>
+<li>API and Engine communicate exclusively through the database.</li>
+<li>Engine coordinates Workers and Stream Manager via IPC (stdin/stdout) with JSON messages.</li>
+<li>Processed frames are transferred between Workers and Stream Manager through shared memory.</li>
+<li>All components must be operational to execute a run; if any fails, the run does not complete.</li>
 </ul>
 <hr />
-<h2 id="dependencias-externas-y-hardware">Dependencias externas y hardware</h2>
+<h2 id="external-dependencies-and-hardware">External Dependencies and Hardware</h2>
 <ul>
-<li>Dependencia fuerte de arquitectura GPU: Tesla V100, Google T4, Jetson.</li>
-<li>Librerías y frameworks requeridos: CUDA 12.6, cuDNN, DeepStream 7.1, pyds, GStreamer plugins, drivers NVIDIA específicos, YOLO, PyTorch, TensorRT.</li>
-<li>API y Engine dependen de la base de datos (actualmente local).</li>
-<li>Módulos dependen del hardware disponible para cumplir con rendimiento esperado.</li>
+<li>Strong dependency on GPU architecture: Tesla V100, NVIDIA T4, Jetson.</li>
+<li>Required libraries and frameworks: CUDA 12.6, cuDNN, DeepStream 7.1, pyds, GStreamer plugins, specific NVIDIA drivers, YOLO, PyTorch, TensorRT.</li>
+<li>API and Engine depend on the database (currently local).</li>
+<li>Modules depend on available hardware to meet expected performance.</li>
 </ul>
 <hr />
-<h2 id="escalabilidad-y-limites-conceptuales">Escalabilidad y límites conceptuales</h2>
+<h2 id="scalability-and-conceptual-limits">Scalability and Conceptual Limits</h2>
 <ul>
-<li>Límite actual: 6 streams 1080p con inferencia full-frame usando modelo YOLO nano.</li>
-<li>Potencial estimado: 12-15 streams con optimización de recursos y sin escalar hardware.</li>
-<li>Consumo actual para 6 streams: 16GB RAM, &lt;12GB VRAM, GPU Tesla V100, CPU 6 núcleos.</li>
-<li>Escalar mediante más hardware es más rápido pero costoso; optimización de código puede mejorar eficiencia sin aumentar recursos.</li>
+<li>Current limit: 6 1080p streams with full-frame inference using a YOLO nano model.</li>
+<li>Estimated potential: ~10 streams with resource optimization and without scaling hardware.</li>
+<li>Current consumption for 6 streams: 16 GB RAM, &lt;12 GB VRAM, Tesla V100 GPU, 6 CPU cores.</li>
+<li>Scaling via additional hardware is faster but costly; code optimization can improve efficiency without increasing resources.</li>
 </ul>
 <hr />
-<h2 id="metricas-conceptuales">Métricas conceptuales</h2>
+<h2 id="conceptual-metrics">Conceptual Metrics</h2>
 <ul>
-<li>Se mide framedrop rate, latencia end-to-end y latencia de procesamiento.</li>
-<li>Pipeline 2 mide solo latencia end-to-end, framedrop no es representativo.</li>
-<li>La medición real es limitada debido a la pérdida de identidad de frames entre pipelines.</li>
-<li>Futuras mejoras: agregar metadata por frame para trazabilidad entre pipelines y medición precisa de throughput y latencia.</li>
+<li>Frame drop rate, end-to-end latency, and processing latency are measured.</li>
+<li>The Factory Pipeline measures only end-to-end latency; frame drop is not representative given that it re-consumes the same frames from shared memory.</li>
+<li>Real measurement is limited due to loss of frame identity between pipelines.</li>
+<li>Future improvements: add per-frame metadata for traceability between pipelines and precise throughput and latency measurement.</li>
 </ul>
 <hr />
-<h2 id="extensibilidad-y-ownership">Extensibilidad y ownership</h2>
+<h2 id="extensibility-and-ownership">Extensibility and Ownership</h2>
 <ul>
-<li>Módulos como validación de reglas, evaluación de reglas, carga de modelos y dibujado son extensibles, aunque requieren intervención de un desarrollador.</li>
-<li>Engine orquesta todos los módulos; API desacopla casi totalmente la interacción mediante la base de datos.</li>
-<li>Diseño conceptual permite escalar y modificar funcionalidades sin afectar otros módulos, respetando límites del MVP.</li>
+<li>Modules such as rule validation, rule evaluation, model loading, and drawing are extensible, though they require developer intervention.</li>
+<li>Engine orchestrates all modules; API almost fully decouples interaction through the database.</li>
+<li>The conceptual design allows scaling and modifying functionality without affecting other modules, within MVP boundaries.</li>
 </ul>
 
 

@@ -423,10 +423,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#stream-concurrency-limit-mvp" class="md-nav__link">
+  <a href="#limite-de-concurrencia-de-streams-mvp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Stream Concurrency Limit (MVP)
+        Límite de Concurrencia de Streams (MVP)
       
     </span>
   </a>
@@ -434,10 +434,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#zero-copy-limitations" class="md-nav__link">
+  <a href="#limitaciones-de-zero-copy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Zero-Copy Limitations
+        Limitaciones de Zero-Copy
       
     </span>
   </a>
@@ -445,10 +445,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metrics-and-observability-limitations" class="md-nav__link">
+  <a href="#limitaciones-de-metricas-y-observabilidad" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Metrics and Observability Limitations
+        Limitaciones de Métricas y Observabilidad
       
     </span>
   </a>
@@ -456,10 +456,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mvp-scope-limitations" class="md-nav__link">
+  <a href="#limitaciones-de-alcance-del-mvp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MVP Scope Limitations
+        Limitaciones de Alcance del MVP
       
     </span>
   </a>
@@ -467,10 +467,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#resolved-technical-debt" class="md-nav__link">
+  <a href="#deuda-tecnica-resuelta" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resolved Technical Debt
+        Deuda Técnica Resuelta
       
     </span>
   </a>
@@ -478,10 +478,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deferred-improvements" class="md-nav__link">
+  <a href="#mejoras-diferidas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deferred Improvements
+        Mejoras Diferidas
       
     </span>
   </a>
@@ -577,10 +577,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#stream-concurrency-limit-mvp" class="md-nav__link">
+  <a href="#limite-de-concurrencia-de-streams-mvp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Stream Concurrency Limit (MVP)
+        Límite de Concurrencia de Streams (MVP)
       
     </span>
   </a>
@@ -588,10 +588,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#zero-copy-limitations" class="md-nav__link">
+  <a href="#limitaciones-de-zero-copy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Zero-Copy Limitations
+        Limitaciones de Zero-Copy
       
     </span>
   </a>
@@ -599,10 +599,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metrics-and-observability-limitations" class="md-nav__link">
+  <a href="#limitaciones-de-metricas-y-observabilidad" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Metrics and Observability Limitations
+        Limitaciones de Métricas y Observabilidad
       
     </span>
   </a>
@@ -610,10 +610,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mvp-scope-limitations" class="md-nav__link">
+  <a href="#limitaciones-de-alcance-del-mvp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MVP Scope Limitations
+        Limitaciones de Alcance del MVP
       
     </span>
   </a>
@@ -621,10 +621,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#resolved-technical-debt" class="md-nav__link">
+  <a href="#deuda-tecnica-resuelta" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resolved Technical Debt
+        Deuda Técnica Resuelta
       
     </span>
   </a>
@@ -632,10 +632,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deferred-improvements" class="md-nav__link">
+  <a href="#mejoras-diferidas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deferred Improvements
+        Mejoras Diferidas
       
     </span>
   </a>
@@ -662,7 +662,7 @@
 <h1 id="limitaciones">Limitaciones</h1>
 <p>Esta sección explicita las restricciones técnicas observadas en el estado actual del MVP, diferenciando límites derivados de implementación, entorno y prioridades de alcance respecto de limitaciones estructurales del diseño. Define los bordes operativos actuales del sistema en términos de concurrencia, zero-copy, métricas, escalabilidad y observabilidad, estableciendo qué comportamientos son inherentes al estado presente y cuáles constituyen deuda técnica planificada para evolución futura.</p>
 <hr />
-<h2 id="stream-concurrency-limit-mvp">Stream Concurrency Limit (MVP)</h2>
+<h2 id="limite-de-concurrencia-de-streams-mvp">Límite de Concurrencia de Streams (MVP)</h2>
 <ul>
 <li>El MVP soporta actualmente hasta <strong>6 streams concurrentes</strong> con rendimiento aceptable.</li>
 <li>Este límite surge de <strong>consumo agregado de recursos</strong> (RAM, VRAM, encoder/decoder por hardware y cómputo GPU), no de una restricción lógica del sistema.</li>
@@ -675,7 +675,7 @@
 <li>Aun con optimización, el hardware impone un <strong>techo práctico</strong> que limita la escalabilidad sin aumento de recursos.</li>
 </ul>
 <hr />
-<h2 id="zero-copy-limitations">Zero-Copy Limitations</h2>
+<h2 id="limitaciones-de-zero-copy">Limitaciones de Zero-Copy</h2>
 <ul>
 <li>No se ha logrado un esquema de <strong>zero-copy completo</strong> a lo largo de todo el pipeline.</li>
 <li>En plataformas Jetson, aunque RAM y VRAM comparten el mismo chip, el zero-copy total no es viable dentro de los límites actuales de:</li>
@@ -692,7 +692,7 @@
 <li>Conclusión: se aplica un enfoque <strong>best-effort zero-copy</strong>, manteniendo los frames en GPU el mayor tiempo posible, pero aceptando copias cuando son necesarias.</li>
 </ul>
 <hr />
-<h2 id="metrics-and-observability-limitations">Metrics and Observability Limitations</h2>
+<h2 id="limitaciones-de-metricas-y-observabilidad">Limitaciones de Métricas y Observabilidad</h2>
 <ul>
 <li>La arquitectura basada en <strong>dos pipelines desacoplados mediante memoria compartida</strong> provoca la <strong>pérdida de identidad de frame</strong> entre pipelines.</li>
 <li>Esto impide medir de forma precisa:</li>
@@ -708,7 +708,7 @@
 <li>Dado el alcance del MVP, esta mejora se considera <strong>deuda técnica</strong>.</li>
 </ul>
 <hr />
-<h2 id="mvp-scope-limitations">MVP Scope Limitations</h2>
+<h2 id="limitaciones-de-alcance-del-mvp">Limitaciones de Alcance del MVP</h2>
 <ul>
 <li>El sistema se desarrolló como MVP orientado a <strong>validación técnica y de negocio</strong>, no como producto final.</li>
 <li>No se implementaron:</li>
@@ -726,12 +726,12 @@
 <li>comportamiento de los consumidores de los streams.</li>
 </ul>
 <hr />
-<h2 id="resolved-technical-debt">Resolved Technical Debt</h2>
+<h2 id="deuda-tecnica-resuelta">Deuda Técnica Resuelta</h2>
 <ul>
 <li>Se eliminó la <strong>cache de frames completos en CPU del módulo de dibujado</strong>, reduciendo el consumo excesivo de RAM observado en versiones anteriores. El módulo mantiene cache de resultados de inferencia y metadata de dibujado entre frames, pero ya no almacena copias de frames en memoria CPU.</li>
 </ul>
 <hr />
-<h2 id="deferred-improvements">Deferred Improvements</h2>
+<h2 id="mejoras-diferidas">Mejoras Diferidas</h2>
 <p>Las siguientes limitaciones se consideran abordables en fases futuras de desarrollo:</p>
 <ul>
 <li>Optimización adicional del consumo de memoria RAM y VRAM.</li>
